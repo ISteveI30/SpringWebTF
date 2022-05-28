@@ -1,5 +1,5 @@
 package pe.edu.upc.uhelp.serviceinterface;
 
-public interface IPagoServiceImpl {
+public interface IPagoService {
 
 }

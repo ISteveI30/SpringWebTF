@@ -9,3 +9,5 @@ import pe.edu.upc.uhelp.entities.Pago;
 public interface IPagoRepository extends JpaRepository<Pago, Integer>  {
 
 }
+
+
