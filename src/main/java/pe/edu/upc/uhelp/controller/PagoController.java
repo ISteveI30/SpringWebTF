@@ -54,13 +54,13 @@ public class PagoController {
 	public String UpdatePago(@PathVariable("id")int id, Model model) {
 		try {
 			Optional<Pago> pago=pagoService.findPago(id);
-			model.addAttribute("per",pago.get());
+			model.addAttribute("pago",pago.get());
 		} catch (Exception e) {
 			model.addAttribute("error",e.getMessage());
 		}
 		return "pago/updatePago";
 	}
-	@RequestMapping("/eliminar")
+	@RequestMapping("/eliminar/{id}")
 	public String deletePago(@PathVariable("id")int id, Model model) {
 		try {
 			if(id>0) {
