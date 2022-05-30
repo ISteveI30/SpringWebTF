@@ -26,9 +26,14 @@ public class Pago {
 	
 	@Column(name = "codigoPresencial", nullable = false, length = 8)
 	private String codigoPresencial;
-	
+		
 	public Pago() {
 		super();
+	}
+		
+	public Pago(String aux) {
+		super();
+		this.nombre = aux;
 	}
 
 	public Pago(int idPago, String nombre, String numeroTarjeta, String codigoTarjeta, String codigoPresencial) {
@@ -79,5 +84,5 @@ public class Pago {
 	public void setCodigoPresencial(String codigoPresencial) {
 		this.codigoPresencial = codigoPresencial;
 	}
-		
+			
 }

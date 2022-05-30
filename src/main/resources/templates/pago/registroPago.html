@@ -1,49 +1,89 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="master/master :: head">
+<head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Registro</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 </head>
 <body>
 	<header th:replace="master/master :: header"></header>
 
 	<div class="container">
-		<div>
-			<form th:action="@{/pagos/guardar}" th:object="${pago}" method="post">
-				<div class="col-sm-12">
-					<label class="form-label">Id: </label> <input class="form-control"
-						type="text" th:field="*{idPago}" />
-				</div>
-				<div class="col-sm-12">
-					<label class="form-label">Seleccione su método de Pago: </label> <select
-						class="form-select" aria-label="Default select example"
-						th:field="*{nombre}">
-						<option th:each="var : ${tipos}" th:value="${var.tipo}"
-							th:text="${var.tipo}"></option>
-					</select>
-				</div>
-
-				<div th:switch="${nombre}">
-					<p th:case="'YAPE'">YAPE</p>
-					<p th:case="'Tarjeta'">Tarjeta</p>
-					<p th:case="'Presencial'">Presencial</p>
-				</div>
-				<div class="col-sm-12">
-					<label class="form-label">Numero de tarjeta: </label> <input
-						class="form-control" type="text" th:field="*{numeroTarjeta}" />
-				</div>
-				<div class="col-sm-12">
-					<label class="form-label">Código de 3 dígitos </label> <input
-						class="form-control" type="text" th:field="*{codigoTarjeta}" />
-				</div>
-				<div class="col-sm-12">
-					<label class="form-label">Código presencial </label> <input
-						class="form-control" type="text" th:field="*{codigoPresencial}" />
-				</div>
-				<div class="col-sm-12 form-control">
-					<input class="btn btn-primary" type="submit" value="Registrar" />
-				</div>
-			</form>
+		<div th:switch="${tipoPago.tipo}">
+			<div th:case="'YAPE'">
+				<form th:action="@{/pagos/guardar}" th:object="${pago}"
+					method="post">
+					<div class="col-sm-12">
+						<input class="form-control" type="hidden" th:field="*{idPago}" />
+					</div>
+					<div class="col-sm-12">
+						<label class="form-label">Numero de tarjeta: </label> <input
+							class="form-control" type="text" th:field="*{numeroTarjeta}" />
+					</div>
+					<div class="col-sm-12">
+						<label class="form-label">Código de 3 dígitos </label> <input
+							class="form-control" type="text" th:field="*{codigoTarjeta}" />
+					</div>
+					<div class="col-sm-12">
+						<label class="form-label">Código presencial </label> <input
+							class="form-control" type="text" th:field="*{codigoPresencial}" />
+					</div>
+					<div class="col-sm-12 form-control">
+						<input class="btn btn-primary" type="submit" value="Registrar" />
+					</div>
+				</form>
+			</div>
+			<div th:case="'Tarjeta'">
+			<p>Tipo de pago con tarjeta</p>
+					<form th:action="@{/pagos/guardar}" th:object="${pago}"
+					method="post">
+					<div class="col-sm-12">
+					<input class="form-control" type="hidden" th:field="*{idPago}" />
+					</div>
+					<div class="col-sm-12">
+						<input class="form-control" type="hidden" th:field="*{nombre}" />
+					</div>
+					<div class="col-sm-12">
+						<label class="form-label">Numero de tarjeta: </label> <input
+							class="form-control" type="text" th:field="*{numeroTarjeta}" />
+					</div>
+					<div class="col-sm-12">
+						<label class="form-label">Código de 3 dígitos </label> <input
+							class="form-control" type="text" th:field="*{codigoTarjeta}" />
+					</div>
+					<div th:object="${obj}"></div>	
+					<div class="col-sm-12 form-control">
+						<input class="btn btn-primary" type="submit" value="Registrar" />
+					</div>
+				</form>
+			</div>
+			<div th:case="'Presencial'">
+					<form th:action="@{/pagos/guardar}" th:object="${pago}"
+					method="post">
+					<div class="col-sm-12">
+						<label class="form-label" hidden>Id: </label> <input
+							class="form-control" type="hidden" th:field="*{idPago}" />
+					</div>
+				
+					<div class="col-sm-12">
+						<label class="form-label">Numero de tarjeta: </label> <input
+							class="form-control" type="text" th:field="*{numeroTarjeta}" />
+					</div>
+					<div class="col-sm-12">
+						<label class="form-label">Código de 3 dígitos </label> <input
+							class="form-control" type="text" th:field="*{codigoTarjeta}" />
+					</div>
+					<div class="col-sm-12">
+						<label class="form-label">Código presencial </label> <input
+							class="form-control" type="text" th:field="*{codigoPresencial}" />
+					</div>
+					<div class="col-sm-12 form-control">
+						<input class="btn btn-primary" type="submit" value="Registrar" />
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
 

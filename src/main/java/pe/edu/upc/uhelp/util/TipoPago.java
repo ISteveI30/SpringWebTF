@@ -3,12 +3,13 @@ package pe.edu.upc.uhelp.util;
 
 public class TipoPago {
 
-	public String tipo;
+	private String tipo;
 	
 	
 	public TipoPago() {
 		super();
 	}
+
 
 	public TipoPago(String tipo) {
 		super();
