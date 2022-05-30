@@ -1,7 +1,7 @@
 package pe.edu.upc.uhelp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import pe.edu.upc.uhelp.entities.Pago;
 import pe.edu.upc.uhelp.serviceinterface.IPagoService;
+import pe.edu.upc.uhelp.util.TipoPago;
 
 @Controller
 @RequestMapping("/pagos")
@@ -26,8 +27,18 @@ public class PagoController {
 	private IPagoService pagoService;
 	List<Pago> lstPagos;
 	
+	public List<TipoPago> cargar() {
+		List<TipoPago> lstPagos = new ArrayList<TipoPago>(); 
+		lstPagos.add(new TipoPago("YAPE"));
+		lstPagos.add(new TipoPago("Tarjeta"));
+		lstPagos.add(new TipoPago("Presencial"));
+		return lstPagos;
+	}
+	
 	@GetMapping("/registro")
 	public String newPago(Model model) {
+		
+		model.addAttribute("tipos",cargar());
 		model.addAttribute("pago",new Pago());
 		return "pago/registroPago";
 	}
@@ -55,6 +66,7 @@ public class PagoController {
 		try {
 			Optional<Pago> pago=pagoService.findPago(id);
 			model.addAttribute("pago",pago.get());
+			model.addAttribute("tipos",cargar());
 		} catch (Exception e) {
 			model.addAttribute("error",e.getMessage());
 		}

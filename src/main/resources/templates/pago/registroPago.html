@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<header th:replace="master/master :: header"></header>
+	<header th:replace="master/master :: header"></header>
 
 	<div class="container">
 		<div>
@@ -15,8 +15,18 @@
 						type="text" th:field="*{idPago}" />
 				</div>
 				<div class="col-sm-12">
-					<label class="form-label">Método de pago: </label> <input
-						class="form-control" type="text" th:field="*{nombre}" />
+					<label class="form-label">Seleccione su método de Pago: </label> <select
+						class="form-select" aria-label="Default select example"
+						th:field="*{nombre}">
+						<option th:each="var : ${tipos}" th:value="${var.tipo}"
+							th:text="${var.tipo}"></option>
+					</select>
+				</div>
+
+				<div th:switch="${nombre}">
+					<p th:case="'YAPE'">YAPE</p>
+					<p th:case="'Tarjeta'">Tarjeta</p>
+					<p th:case="'Presencial'">Presencial</p>
 				</div>
 				<div class="col-sm-12">
 					<label class="form-label">Numero de tarjeta: </label> <input
@@ -27,8 +37,8 @@
 						class="form-control" type="text" th:field="*{codigoTarjeta}" />
 				</div>
 				<div class="col-sm-12">
-					<label class="form-label">Código presencial </label> <input class="form-control"
-						type="text" th:field="*{codigoPresencial}" />
+					<label class="form-label">Código presencial </label> <input
+						class="form-control" type="text" th:field="*{codigoPresencial}" />
 				</div>
 				<div class="col-sm-12 form-control">
 					<input class="btn btn-primary" type="submit" value="Registrar" />
@@ -37,6 +47,6 @@
 		</div>
 	</div>
 
-<footer th:replace="master/master :: resource"></footer>
+	<footer th:replace="master/master :: resource"></footer>
 </body>
 </html>
