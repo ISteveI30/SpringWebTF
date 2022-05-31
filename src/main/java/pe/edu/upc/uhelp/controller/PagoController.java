@@ -27,7 +27,7 @@ public class PagoController {
 	private IPagoService pagoService;
 	List<Pago> lstPagos;
 
-	/*DOCUMENTAR LOS CODIFICADO*/
+	/***********DOCUMENTAR LO CODIFICADO***************/
 	
 	/*Esta clase sirve para cargar el select de Tipo pago*/
 	public List<TipoPago> cargar() {
@@ -39,7 +39,7 @@ public class PagoController {
 		lstPagos.add(new TipoPago("Presencial"));
 		return lstPagos;
 	}
-	
+	/*Clase para comprobar los datos en consola que se registran*/
 	public void comprobarClase(Pago pago) {
 		System.out.println(pago.getIdPago());
 		System.out.println(pago.getNombre());
@@ -47,21 +47,21 @@ public class PagoController {
 		System.out.println(pago.getCodigoTarjeta());
 		System.out.println(pago.getCodigoPresencial());
 	}
-
+	/*Clase que inicia y carga la selección de pago*/
 	@GetMapping("/select")
 	public String newPago(Model model) {
 		model.addAttribute("tipos", cargar());
 		model.addAttribute("obj", new TipoPago());
-		return "pago/selectPago";
+		return "pago/selectPago";/*carga el formulario donde se selecciona el tipo e pago*/
 	}
-
+	/*El metodo que guarda el método seleccionado y crea un objeto nuevo de tipo Pago*/
 	@PostMapping("/registro")
 	public String tempPago(TipoPago pago, Model model) {
 		System.out.println(pago.getTipo());
-		model.addAttribute("tipoPago", pago);
-		model.addAttribute("tipos", cargar());
-		model.addAttribute("pago", new Pago(pago.getTipo()));
-		return "pago/registroPago";
+		model.addAttribute("tipoPago", pago);//Pasa el objeto TipoPago al sigueinte formulario
+		model.addAttribute("tipos", cargar());//Llama a la funciónque carga los tipos de pago
+		model.addAttribute("pago", new Pago(pago.getTipo()));//Crea el obj Pago con el atributo nombre por defecto
+		return "pago/registroPago";/*dirige a otro al formulario con el tipo de pago seleccionado*/
 	}
 
 	@PostMapping("/guardar")
@@ -72,15 +72,22 @@ public class PagoController {
 		}else {
 			switch (pago.getNombre()) {
 			case "YAPE": {
-				
+				comprobarClase(pago);
+				pago.setNumeroTarjeta("0");
+				pago.setCodigoTarjeta("0");
+				pago.setCodigoPresencial("0");
+				pagoService.insert(pago);
 				}
 			case "Tarjeta": {
-				pago.setCodigoPresencial("0");
 				comprobarClase(pago);
+				pago.setCodigoPresencial("0");
 				pagoService.insert(pago);
 				}
 			case "Presencial": {
-	
+				comprobarClase(pago);
+				pago.setNumeroTarjeta("0");
+				pago.setCodigoTarjeta("0");
+				pagoService.insert(pago);
 				}
 			}	
 			

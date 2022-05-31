@@ -19,16 +19,11 @@
 						<input class="form-control" type="hidden" th:field="*{idPago}" />
 					</div>
 					<div class="col-sm-12">
-						<label class="form-label">Numero de tarjeta: </label> <input
-							class="form-control" type="text" th:field="*{numeroTarjeta}" />
+						<input class="form-control" type="hidden" th:field="*{nombre}" />
 					</div>
-					<div class="col-sm-12">
-						<label class="form-label">Código de 3 dígitos </label> <input
-							class="form-control" type="text" th:field="*{codigoTarjeta}" />
-					</div>
-					<div class="col-sm-12">
-						<label class="form-label">Código presencial </label> <input
-							class="form-control" type="text" th:field="*{codigoPresencial}" />
+					<div class="col-sm-12 form-control">
+						<img alt="imagen de QR" th:src="@{/img/dinoQR.jpg}" width="200"
+							height="200">
 					</div>
 					<div class="col-sm-12 form-control">
 						<input class="btn btn-primary" type="submit" value="Registrar" />
@@ -36,11 +31,11 @@
 				</form>
 			</div>
 			<div th:case="'Tarjeta'">
-			<p>Tipo de pago con tarjeta</p>
-					<form th:action="@{/pagos/guardar}" th:object="${pago}"
+				<p>Tipo de pago con tarjeta</p>
+				<form th:action="@{/pagos/guardar}" th:object="${pago}"
 					method="post">
 					<div class="col-sm-12">
-					<input class="form-control" type="hidden" th:field="*{idPago}" />
+						<input class="form-control" type="hidden" th:field="*{idPago}" />
 					</div>
 					<div class="col-sm-12">
 						<input class="form-control" type="hidden" th:field="*{nombre}" />
@@ -53,34 +48,27 @@
 						<label class="form-label">Código de 3 dígitos </label> <input
 							class="form-control" type="text" th:field="*{codigoTarjeta}" />
 					</div>
-					<div th:object="${obj}"></div>	
+					<div th:object="${obj}"></div>
 					<div class="col-sm-12 form-control">
 						<input class="btn btn-primary" type="submit" value="Registrar" />
 					</div>
 				</form>
 			</div>
 			<div th:case="'Presencial'">
-					<form th:action="@{/pagos/guardar}" th:object="${pago}"
+				<form th:action="@{/pagos/guardar}" th:object="${pago}"
 					method="post">
 					<div class="col-sm-12">
-						<label class="form-label" hidden>Id: </label> <input
-							class="form-control" type="hidden" th:field="*{idPago}" />
-					</div>
-				
-					<div class="col-sm-12">
-						<label class="form-label">Numero de tarjeta: </label> <input
-							class="form-control" type="text" th:field="*{numeroTarjeta}" />
+					<input class="form-control" type="hidden" th:field="*{idPago}"/>
 					</div>
 					<div class="col-sm-12">
-						<label class="form-label">Código de 3 dígitos </label> <input
-							class="form-control" type="text" th:field="*{codigoTarjeta}" />
+						<input class="form-control" type="hidden" th:field="*{nombre}"/>
 					</div>
 					<div class="col-sm-12">
 						<label class="form-label">Código presencial </label> <input
-							class="form-control" type="text" th:field="*{codigoPresencial}" />
+							class="form-control" type="text" th:field="*{codigoPresencial}"/>
 					</div>
 					<div class="col-sm-12 form-control">
-						<input class="btn btn-primary" type="submit" value="Registrar" />
+						<input class="btn btn-primary" type="submit" value="Registrar"/>
 					</div>
 				</form>
 			</div>
