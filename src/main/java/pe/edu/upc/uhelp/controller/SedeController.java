@@ -69,11 +69,11 @@ public class SedeController {
 	}
 	
 	@RequestMapping("/irmodificar/{id}")
-	public String goUpdate(@PathVariable int id, Model model) {
+	public String goUpdate(@PathVariable("id") int id, Model model) {
 		
 		Optional<Sede>objSed=sedService.listId(id);
 		model.addAttribute("sed",objSed.get());
-		return "sede/frmActualiza";
+		return "sede/frmActualizaSede";
 	}
 	
 	@PostMapping("/modificar")

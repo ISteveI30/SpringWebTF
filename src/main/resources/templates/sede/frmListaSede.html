@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<header th:replace="master/master :: header"> </header>
+	<div class="container">
+		<div>
+			<div class="table-responsive">
+				<table class="table table-white">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Nombre</th>
+							<th>Dirección</th>
+							<th>Distrito</th>
+							
+							<th>Operación</th>
+							<th>Operación 2</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="s:${listaSedes}">
+							<td th:text="${s.idSede}"></td>
+							<td th:text="${s.nombre}"></td>
+							<td th:text="${s.direccion}"></td>
+							<td th:text="${s.distrito}"></td>
+							
+
+							<td> 
+							<a th:href="@{/sedes/eliminar?id=}+${s.idSede}"> Eliminar
+							</a>
+							</td>
+							
+							<td>
+							<a th:href="@{'/sedes/irmodificar/'+${s.idSede}}"> Actualizar
+							</a>
+							</td>
+							
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+
+		</div>
+
+	</div>
+</body>
+</html>
