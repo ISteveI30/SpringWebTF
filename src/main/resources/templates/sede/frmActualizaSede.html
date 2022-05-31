@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<header th:replace="master/master :: header"></header>
+	
+	
+	<div class="container">
+	<div>
+	
+	<form th:action="@{/sedes/modificar}" th:object="${sed}" method="post">
+	
+	 <div class="col-sm-12">
+                    <label class="form-label">Id Sede: </label>
+                    <input class="form-control" type="text" th:field="*{idSede}" />
+                </div>
+                <div class="col-sm-12">
+                    <label class="form-label">Nombre: </label>
+                    <input class="form-control" type="text" th:field="*{nombre}" />
+                </div>
+                <div class="col-sm-12">
+                    <label class="form-label">Dirección: </label>
+                    <input class="form-control" type="text" th:field="*{direccion}" />
+                </div>
+                <div class="col-sm-12">
+                    <label class="form-label">Distrito: </label>
+                    <input class="form-control" type="text" th:field="*{distrito}" />
+                </div>
+                
+              <div class="col-sm-12">
+                    <input type="submit" value="Registrar" class="btn btn-primary" />
+                </div>
+	
+	</form>
+	
+	</div>
+	
+	
+	</div>
+</body>
