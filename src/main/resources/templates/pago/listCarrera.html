@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<header th:replace="master/master :: header"></header>
+
+<div class="container mx-auto mt-4 ">
+		<div class="table-responsive">
+			<table class="table table-dark table-hover">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nombre</th>
+						<th>Modalidad</th>
+						<th>Operacion</th>
+						<th>Operacion</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="p:${lstcarreras}">
+						<td th:text="${p.idCarrera}"></td>
+						<td th:text="${p.nombre}"></td>
+						<td th:text="${p.modalidad}"></td>
+						<td><a th:href="@{'/pagos/editar/'+${p.idCarrera}}">Editar</a>
+						<td><a th:href="@{'/pagos/eliminar/'+${p.idCarrera}}">Eliminar</a>	
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+<footer th:replace="master/master :: resource"></footer>
+</body>
+</html>
