@@ -27,80 +27,92 @@ public class PagoController {
 	private IPagoService pagoService;
 	List<Pago> lstPagos;
 
-	/***********DOCUMENTAR LO CODIFICADO***************/
-	
-	/*Esta clase sirve para cargar el select de Tipo pago*/
+	/*********** DOCUMENTAR LO CODIFICADO ***************/
+
+	/* Esta clase sirve para cargar el select de Tipo pago */
 	public List<TipoPago> cargar() {
 		List<TipoPago> lstPagos = new ArrayList<TipoPago>();
-		/*la clase tipo pago es una auxiliar que no esta en la db
-		 * tiene como parametro el tipo de pago en el constructor*/
+		/*
+		 * la clase tipo pago es una auxiliar que no esta en la db tiene como parametro
+		 * el tipo de pago en el constructor
+		 */
 		lstPagos.add(new TipoPago("YAPE"));
 		lstPagos.add(new TipoPago("Tarjeta"));
 		lstPagos.add(new TipoPago("Presencial"));
 		return lstPagos;
 	}
-	/*Clase para comprobar los datos en consola que se registran*/
+
+	/* Clase para comprobar los datos en consola que se registran */
 	public void comprobarClase(Pago pago) {
+		System.out.println("-------Datos del Objeto------");
 		System.out.println(pago.getIdPago());
 		System.out.println(pago.getNombre());
 		System.out.println(pago.getNumeroTarjeta());
 		System.out.println(pago.getCodigoTarjeta());
 		System.out.println(pago.getCodigoPresencial());
 	}
-	/*Clase que inicia y carga la selección de pago*/
+
+	/* Clase que inicia y carga la selección de pago */
 	@GetMapping("/select")
 	public String newPago(Model model) {
 		model.addAttribute("tipos", cargar());
 		model.addAttribute("obj", new TipoPago());
-		return "pago/selectPago";/*carga el formulario donde se selecciona el tipo e pago*/
+		return "pago/selectPago";/* carga el formulario donde se selecciona el tipo e pago */
 	}
-	/*El metodo que guarda el método seleccionado y crea un objeto nuevo de tipo Pago*/
+
+	/*
+	 * El metodo que guarda el método seleccionado y crea un objeto nuevo de tipo
+	 * Pago
+	 */
 	@PostMapping("/registro")
 	public String tempPago(TipoPago pago, Model model) {
-		System.out.println(pago.getTipo());
-		model.addAttribute("tipoPago", pago);//Pasa el objeto TipoPago al sigueinte formulario
-		model.addAttribute("tipos", cargar());//Llama a la funciónque carga los tipos de pago
-		model.addAttribute("pago", new Pago(pago.getTipo()));//Crea el obj Pago con el atributo nombre por defecto
-		return "pago/registroPago";/*dirige a otro al formulario con el tipo de pago seleccionado*/
+		System.out.println("Tipo de pago en formulario: " + pago.getTipo());
+		model.addAttribute("tipoPago", pago);// Pasa el objeto TipoPago al sigueinte formulario
+		// model.addAttribute("tipos", cargar());//Llama a la funciónque carga los tipos
+		// de pago
+		model.addAttribute("pago", new Pago(pago.getTipo()));// Crea el obj Pago con el atributo nombre por defecto
+		return "pago/registroPago";/* dirige a otro al formulario con el tipo de pago seleccionado */
 	}
 
 	@PostMapping("/guardar")
-	public String savePago(@Valid Pago pago,BindingResult binRes,Model model) {
-		System.out.println("Tipo de pago: "+pago.getNombre());
-		if(binRes.hasErrors()) {
-			return "pago/registroPago";	
-		}else {
+	public String savePago(@Valid Pago pago, BindingResult binRes, Model model) {
+		System.out.println("Tipo de pago registrado: " + pago.getNombre());
+		if (binRes.hasErrors()) {
+			return "pago/registroPago";
+		} else {
 			switch (pago.getNombre()) {
 			case "YAPE": {
-				comprobarClase(pago);
 				pago.setNumeroTarjeta("0");
 				pago.setCodigoTarjeta("0");
 				pago.setCodigoPresencial("0");
+				comprobarClase(pago);
 				pagoService.insert(pago);
-				}
+				break;
+			}
 			case "Tarjeta": {
-				comprobarClase(pago);
 				pago.setCodigoPresencial("0");
-				pagoService.insert(pago);
-				}
-			case "Presencial": {
 				comprobarClase(pago);
+				pagoService.insert(pago);
+				break;
+			}
+			case "Presencial": {
 				pago.setNumeroTarjeta("0");
 				pago.setCodigoTarjeta("0");
+				comprobarClase(pago);
 				pagoService.insert(pago);
-				}
-			}	
-			
-			model.addAttribute("mensaje","Se registró correctamente!!");
+				break;
+			}
+			}
+			model.addAttribute("mensaje", "Se registró correctamente!!");
 			return "redirect:/pagos/select";
-		}		
+		}
 	}
 
 	@GetMapping("/listar")
 	public String listPago(Model model) {
 		try {
-			TipoPago pago = new TipoPago("YAPE");
-			model.addAttribute("pago", pago);
+			// TipoPago pago = new TipoPago("YAPE");
+			// model.addAttribute("pago", pago);
 			model.addAttribute("lstpagos", pagoService.list());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());

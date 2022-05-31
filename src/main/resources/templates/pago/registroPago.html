@@ -13,64 +13,59 @@
 	<div class="container">
 		<div th:switch="${tipoPago.tipo}">
 			<div th:case="'YAPE'">
-				<form th:action="@{/pagos/guardar}" th:object="${pago}"
-					method="post">
-					<div class="col-sm-12">
-						<input class="form-control" type="hidden" th:field="*{idPago}" />
-					</div>
-					<div class="col-sm-12">
-						<input class="form-control" type="hidden" th:field="*{nombre}" />
-					</div>
-					<div class="col-sm-12 form-control">
-						<img alt="imagen de QR" th:src="@{/img/dinoQR.jpg}" width="200"
-							height="200">
-					</div>
-					<div class="col-sm-12 form-control">
-						<input class="btn btn-primary" type="submit" value="Registrar" />
-					</div>
-				</form>
+				<div class="col-4 mx-auto mt-5 p-4 border">
+					<form th:action="@{/pagos/guardar}" th:object="${pago}"
+						method="post">
+						<h2 class="form-label text-center">Pago: YAPE</h2>
+							<input class="form-control" type="hidden" th:field="*{idPago}" />
+							<input class="form-control" type="hidden" th:field="*{nombre}" />
+						<div class="ms-4">
+							<img class="ms-5" alt="imagen de QR" th:src="@{/img/dinoQR.jpg}"
+								width="200" height="200">
+						</div>
+						<div class="col-2 mt-5 border mx-auto">
+							<input class="btn btn-primary" type="submit" value="Registrar" />
+						</div>
+					</form>
+				</div>
 			</div>
 			<div th:case="'Tarjeta'">
-				<p>Tipo de pago con tarjeta</p>
-				<form th:action="@{/pagos/guardar}" th:object="${pago}"
-					method="post">
-					<div class="col-sm-12">
-						<input class="form-control" type="hidden" th:field="*{idPago}" />
-					</div>
-					<div class="col-sm-12">
-						<input class="form-control" type="hidden" th:field="*{nombre}" />
-					</div>
-					<div class="col-sm-12">
-						<label class="form-label">Numero de tarjeta: </label> <input
-							class="form-control" type="text" th:field="*{numeroTarjeta}" />
-					</div>
-					<div class="col-sm-12">
-						<label class="form-label">Código de 3 dígitos </label> <input
-							class="form-control" type="text" th:field="*{codigoTarjeta}" />
-					</div>
-					<div th:object="${obj}"></div>
-					<div class="col-sm-12 form-control">
-						<input class="btn btn-primary" type="submit" value="Registrar" />
-					</div>
-				</form>
+				<div class="col-4 mx-auto mt-5 p-4 border">
+					<form th:action="@{/pagos/guardar}" th:object="${pago}"
+						method="post">
+						<h2 class="form-label text-center">Pago: Tarjeta</h2>
+							<input type="hidden" th:field="*{idPago}" />
+							<input type="hidden" th:field="*{nombre}" />
+						<div >
+							<label class="form-label">Número de tarjeta: </label> <input
+								class="form-control" type="text" th:field="*{numeroTarjeta}" />
+						</div>
+						<div>
+							<label class="form-label">Código de 3 dígitos </label> <input
+								class="form-control" type="text" th:field="*{codigoTarjeta}" />
+						</div>
+						<div class="col-2 mt-5 mx-auto">
+							<input class="btn btn-primary" type="submit" value="Registrar" />
+						</div>
+					</form>
+				</div>
 			</div>
 			<div th:case="'Presencial'">
-				<form th:action="@{/pagos/guardar}" th:object="${pago}"
-					method="post">
-					<div class="col-sm-12">
-					<input class="form-control" type="hidden" th:field="*{idPago}"/>
-					</div>
-					<div class="col-sm-12">
-						<input class="form-control" type="hidden" th:field="*{nombre}"/>
-					</div>
-					<div class="col-sm-12">
-						<label class="form-label">Código presencial </label> <input
-							class="form-control" type="text" th:field="*{codigoPresencial}"/>
-					</div>
-					<div class="col-sm-12 form-control">
-						<input class="btn btn-primary" type="submit" value="Registrar"/>
-					</div>
-				</form>
+				<div class="col-4 mx-auto mt-5 p-4 border">
+					<form th:action="@{/pagos/guardar}" th:object="${pago}"
+						method="post">
+						<h2 class="form-label text-center">Pago: Presencial</h2>
+							<input type="hidden" th:field="*{idPago}" />	
+							<input type="hidden" th:field="*{nombre}" />				
+						<div>
+							<label class="form-label">Código presencial </label> <input
+								class="form-control" type="text" th:field="*{codigoPresencial}" />
+						</div>
+						<div class="col-2 mt-5 mx-auto">
+							<input class="btn btn-primary" type="submit" value="Registrar" />
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>

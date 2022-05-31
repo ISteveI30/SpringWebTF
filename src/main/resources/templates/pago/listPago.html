@@ -8,8 +8,8 @@
 	<header th:replace="master/master :: header"></header>
 
 	<div class="container mx-auto mt-4 ">
-		<div th:switch="${pago.tipo}">
-			<div th:case="'YAPE'" class="table-responsive">
+		<div th:if="${lstpagos != null and !lstpagos.empty}">
+			<div class="table-responsive">
 				<table class="table table-dark table-hover">
 					<thead>
 						<tr>
@@ -18,8 +18,8 @@
 							<th>Número de Tarjeta</th>
 							<th>Código de 3 dígitos</th>
 							<th>Código compra Presencial</th>
-							<th>Operacion</th>
-							<th>Operacion</th>
+							<th>Operación</th>
+							<th>Operación</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -35,7 +35,7 @@
 					</tbody>
 				</table>
 			</div>
-			<div th:case="'Tarjeta'">
+			<div th:if="${lstpagos == null or lstpagos.empty}">
 				<p>Otro método de pago</p>
 			</div>
 		</div>

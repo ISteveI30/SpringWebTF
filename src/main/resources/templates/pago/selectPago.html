@@ -11,19 +11,20 @@
 	<header th:replace="master/master :: header"></header>
 
 	<div class="container">
-		<div>
+
+		<div class="col-6 mx-auto mt-5 p-4 border">
 			<form th:action="@{/pagos/registro}" th:object="${obj}" method="post">
-				<div class="col-sm-12">
-					<label class="form-label">Seleccione su método de Pago: </label> <select
-						class="form-select" aria-label="Default select example"
-						th:field="*{tipo}">
-						<option th:each="var : ${tipos}" th:value="${var.tipo}"
-							th:text="${var.tipo}"></option>
-					</select>
+				<h2 class="form-label text-center">Seleccione su método de Pago</h2>
+				<div class="col-5 mt-3 mx-auto">
+						<select class="form-select" aria-label="Default select example"
+							th:field="*{tipo}">
+							<option th:each="var : ${tipos}" th:value="${var.tipo}"
+								th:text="${var.tipo}"></option>
+						</select>
 				</div>
-			<div class="col-sm-12 form-control">
-						<input class="btn btn-primary" type="submit" value="Registrar" />
-					</div>
+				<div class="col-3 mt-5 border mx-auto">
+					<input class="btn btn-primary" type="submit" value="Confirmar método" />
+				</div>
 			</form>
 		</div>
 	</div>
