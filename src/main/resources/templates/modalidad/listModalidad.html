@@ -15,16 +15,18 @@
 						<th>Formato</th>
 						<th>Tipo</th>
 						<th>Duración</th>
+						<th>Operacion</th>
+						<th>Operacion</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="m:${lstmodalidades}">
-						<td th:text="${m.idModalidad}"></td> 
+						<td th:text="${m.idModalidad}"></td>
 						<td th:text="${m.formato}"></td>
 						<td th:text="${m.tipo}"></td>
 						<td th:text="${m.duracion}"></td>
-					<!--<td><a th:href="@{'/pagos/editar/'+${p.idPago}}">Editar</a> -->
-						<td><a th:href="@{'/modalidades/eliminar/'+${m.idModalidad}}">Eliminar</a> 
+						<td><a th:href="@{'/modalidades/editar/'+${m.idModalidad}}">Editar</a>
+						<td><a th:href="@{'/modalidades/eliminar/'+${m.idModalidad}}">Eliminar</a>
 					</tr>
 				</tbody>
 			</table>

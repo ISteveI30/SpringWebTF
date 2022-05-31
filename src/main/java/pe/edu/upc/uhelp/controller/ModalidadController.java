@@ -1,6 +1,7 @@
 package pe.edu.upc.uhelp.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -50,6 +51,18 @@ public class ModalidadController {
 		return "/modalidad/listModalidad";
 	}
 
+	@RequestMapping("/editar/{id}")
+	public String UpdateModalidad(@PathVariable("id")int id, Model model) {
+		try {
+		Optional<Modalidad> modalidad=modService.findModalidad(id);
+		model.addAttribute("modalidad", modalidad.get());
+		} catch (Exception e) {
+		model.addAttribute("error", e.getMessage());
+		}
+		return "modalidad/updateModalidad";
+	}
+	
+	
 	@RequestMapping("/eliminar/{id}")
 	public String deleteModalidad(@PathVariable("id") int id, Model model) {
 		try {
@@ -60,6 +73,11 @@ public class ModalidadController {
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
+		return "redirect:/modalidades/listar";
+	}
+	@PostMapping("/modificar")
+	public String updateModalidad(Modalidad modalidad) {
+		modService.update(modalidad);
 		return "redirect:/modalidades/listar";
 	}
 }

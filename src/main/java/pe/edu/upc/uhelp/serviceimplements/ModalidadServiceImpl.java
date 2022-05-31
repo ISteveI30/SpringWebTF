@@ -1,6 +1,7 @@
 package pe.edu.upc.uhelp.serviceimplements;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,17 @@ public class ModalidadServiceImpl implements IModalidadService {
 	@Override
 	public void delete(int idModalidad) {
 		modalidadRepository.deleteById(idModalidad);
+	}
+
+	@Override
+	public Optional<Modalidad> findModalidad(int idModalidad) {
+		return modalidadRepository.findById(idModalidad);
+	}
+
+	@Override
+	public void update(Modalidad modalidad) {
+		modalidadRepository.save(modalidad);
+		
 	}
 
 }
