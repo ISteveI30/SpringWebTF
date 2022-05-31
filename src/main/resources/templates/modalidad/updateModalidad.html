@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<header th:replace="master/master :: header"></header>
+
+<div class="container">
+		<div>
+		<h2>Modificar Pago</h2>
+			<form th:action="@{/modalidades/modificar}" th:object="${modalidad}" method="post">
+				<div class="col-sm-12">
+					<label class="form-label">Id: </label> <input class="form-control"
+						type="text" th:field="*{idModalidad}" />
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Formato: </label> <input
+						class="form-control" type="text" th:field="*{formato}" />
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Tipo: </label> <input
+						class="form-control" type="text" th:field="*{tipo}" />
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Duracion: </label> <input
+						class="form-control" type="text" th:field="*{duracion}" />
+				</div>
+				<div class="col-sm-12 form-control">
+					<input class="btn btn-primary" type="submit" value="Guardar Cambios" />
+				</div>
+			</form>
+		</div>
+	</div>
+<footer th:replace="master/master :: resource"></footer>
+</body>
+</html>
