@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -47,5 +48,18 @@ public class ModalidadController {
 			model.addAttribute("error", e.getMessage());
 		}
 		return "/modalidad/listModalidad";
+	}
+
+	@RequestMapping("/eliminar/{id}")
+	public String deleteModalidad(@PathVariable("id") int id, Model model) {
+		try {
+			if (id > 0) {
+				modService.delete(id);
+				model.addAttribute("lstmodalidades", modService.list());
+			}
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
+		}
+		return "redirect:/modalidades/listar";
 	}
 }

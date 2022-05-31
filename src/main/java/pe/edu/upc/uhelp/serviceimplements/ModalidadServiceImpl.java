@@ -26,4 +26,9 @@ public class ModalidadServiceImpl implements IModalidadService {
 		return modalidadRepository.findAll();
 	}
 
+	@Override
+	public void delete(int idModalidad) {
+		modalidadRepository.deleteById(idModalidad);
+	}
+
 }

@@ -10,4 +10,6 @@ public interface IModalidadService {
 	
 	public List<Modalidad> list();
 	
+	public void delete (int idModalidad);
+	
 }
