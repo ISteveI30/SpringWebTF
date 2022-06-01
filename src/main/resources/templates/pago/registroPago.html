@@ -43,6 +43,8 @@
 						<div>
 							<label class="form-label">Código de 3 dígitos </label> <input
 								class="form-control" type="text" th:field="*{codigoTarjeta}" />
+								 <small class="form-text text-danger" th:if="${#fields.hasErrors('codigoTarjeta')}" th:errors="*{codigoTarjeta}">
+								 Debe de contener un valor valido</small>
 						</div>
 						<div class="col-2 mt-5 mx-auto">
 							<input class="btn btn-primary" type="submit" value="Registrar" />

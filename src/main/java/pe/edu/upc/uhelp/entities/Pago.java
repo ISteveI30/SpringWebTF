@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "Pagos")
@@ -21,6 +22,7 @@ public class Pago {
 	@Column(name = "numeroTarjeta", nullable = false, length = 16)
 	private String numeroTarjeta;
 	
+	@Size(min = 3, max = 3, message="Ingrese un código de 3 dígitos")
 	@Column(name = "codigoTarjeta", nullable = false, length = 3)
 	private String codigoTarjeta;
 	
