@@ -5,37 +5,41 @@
 <title>Insert title here</title>
 </head>
 <body>
-<header th:replace="master/master :: header"></header>
+	<header th:replace="master/master :: header"></header>
 
-<div class="container mx-auto mt-4 ">
-		<div class="table-responsive">
-			<table class="table table-dark table-hover">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Método de Pago</th>
-						<th>Número de Tarjeta</th>
-						<th>Código de 3 dígitos</th>
-						<th>Código compra Presencial</th>
-						<th>Operacion</th>
-						<th>Operacion</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="p:${lstpagos}">
-						<td th:text="${p.idPago}"></td>
-						<td th:text="${p.nombre}"></td>
-						<td th:text="${p.numeroTarjeta}"></td>
-						<td th:text="${p.codigoTarjeta}"></td>
-						<td th:text="${p.codigoPresencial}"></td>
-						<td><a th:href="@{'/pagos/editar/'+${p.idPago}}">Editar</a>
-						<td><a th:href="@{'/pagos/eliminar/'+${p.idPago}}">Eliminar</a>	
-					</tr>
-				</tbody>
-			</table>
+	<div class="container mx-auto mt-4 ">
+		<div th:if="${lstpagos != null and !lstpagos.empty}">
+			<div class="table-responsive">
+				<table class="table table-dark table-hover">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Método de Pago</th>
+							<th>Número de Tarjeta</th>
+							<th>Código de 3 dígitos</th>
+							<th>Código compra Presencial</th>
+							<th>Operación</th>
+							<th>Operación</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="p:${lstpagos}">
+							<td th:text="${p.idPago}"></td>
+							<td th:text="${p.nombre}"></td>
+							<td th:text="${p.numeroTarjeta}"></td>
+							<td th:text="${p.codigoTarjeta}"></td>
+							<td th:text="${p.codigoPresencial}"></td>
+							<td><a th:href="@{'/pagos/editar/'+${p.idPago}}">Editar</a>
+							<td><a th:href="@{'/pagos/eliminar/'+${p.idPago}}">Eliminar</a>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div th:if="${lstpagos == null or lstpagos.empty}">
+				<p>Otro método de pago</p>
+			</div>
 		</div>
 	</div>
-
-<footer th:replace="master/master :: resource"></footer>
+	<footer th:replace="master/master :: resource"></footer>
 </body>
 </html>

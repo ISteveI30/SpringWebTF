@@ -1,42 +1,77 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="master/master :: head">
+<head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Registro</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 </head>
 <body>
-<header th:replace="master/master :: header"></header>
+	<header th:replace="master/master :: header"></header>
 
 	<div class="container">
-		<div>
-			<form th:action="@{/pagos/guardar}" th:object="${pago}" method="post">
-				<div class="col-sm-12">
-					<label class="form-label">Id: </label> <input class="form-control"
-						type="text" th:field="*{idPago}" />
+		<div th:switch="${tipoPago.tipo}">
+			<div th:case="'YAPE'">
+				<div class="col-4 mx-auto mt-5 p-4 border">
+					<form th:action="@{/pagos/guardar}" th:object="${pago}"
+						method="post">
+						<h2 class="form-label text-center">Pago: YAPE</h2>
+							<input class="form-control" type="hidden" th:field="*{idPago}" />
+							<input class="form-control" type="hidden" th:field="*{nombre}" />
+						<div class="ms-4">
+							<img class="ms-5" alt="imagen de QR" th:src="@{/img/dinoQR.jpg}"
+								width="200" height="200">
+						</div>
+						<div class="col-2 mt-5 border mx-auto">
+							<input class="btn btn-primary" type="submit" value="Registrar" />
+						</div>
+					</form>
 				</div>
-				<div class="col-sm-12">
-					<label class="form-label">Método de pago: </label> <input
-						class="form-control" type="text" th:field="*{nombre}" />
+			</div>
+			<div th:case="'Tarjeta'">
+				<div class="col-4 mx-auto mt-5 p-4 border">
+					<form th:action="@{/pagos/guardar}" th:object="${pago}"
+						method="post">
+						<h2 class="form-label text-center">Pago: Tarjeta</h2>
+							<input type="hidden" th:field="*{idPago}" />
+							<input type="hidden" th:field="*{nombre}" />
+						<div >
+							<label class="form-label">Número de tarjeta: </label> <input
+								class="form-control" type="text" th:field="*{numeroTarjeta}" />
+						</div>
+						<div>
+							<label class="form-label">Código de 3 dígitos </label> <input
+								class="form-control" type="text" th:field="*{codigoTarjeta}" />
+								 <small class="form-text text-danger" th:if="${#fields.hasErrors('codigoTarjeta')}" th:errors="*{codigoTarjeta}">
+								 Debe de contener un valor valido</small>
+						</div>
+						<div class="col-2 mt-5 mx-auto">
+							<input class="btn btn-primary" type="submit" value="Registrar" />
+						</div>
+					</form>
 				</div>
-				<div class="col-sm-12">
-					<label class="form-label">Numero de tarjeta: </label> <input
-						class="form-control" type="text" th:field="*{numeroTarjeta}" />
+			</div>
+			<div th:case="'Presencial'">
+				<div class="col-4 mx-auto mt-5 p-4 border">
+					<form th:action="@{/pagos/guardar}" th:object="${pago}"
+						method="post">
+						<h2 class="form-label text-center">Pago: Presencial</h2>
+							<input type="hidden" th:field="*{idPago}" />	
+							<input type="hidden" th:field="*{nombre}" />				
+						<div>
+							<label class="form-label">Código presencial </label> <input
+								class="form-control" type="text" th:field="*{codigoPresencial}" />
+						</div>
+						<div class="col-2 mt-5 mx-auto">
+							<input class="btn btn-primary" type="submit" value="Registrar" />
+						</div>
+					</form>
 				</div>
-				<div class="col-sm-12">
-					<label class="form-label">Código de 3 dígitos </label> <input
-						class="form-control" type="text" th:field="*{codigoTarjeta}" />
-				</div>
-				<div class="col-sm-12">
-					<label class="form-label">Código presencial </label> <input class="form-control"
-						type="text" th:field="*{codigoPresencial}" />
-				</div>
-				<div class="col-sm-12 form-control">
-					<input class="btn btn-primary" type="submit" value="Registrar" />
-				</div>
-			</form>
+			</div>
 		</div>
 	</div>
 
-<footer th:replace="master/master :: resource"></footer>
+	<footer th:replace="master/master :: resource"></footer>
 </body>
 </html>
