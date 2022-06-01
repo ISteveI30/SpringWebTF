@@ -6,38 +6,38 @@
 </head>
 <body>
 	<header th:replace="master/master :: header"></header>
+
 	<div class="container mx-auto mt-4 ">
-		<h3>Listado de Modalidades</h3>
-		<div th:if="${lstmodalidades != null and !lstmodalidades.empty}">
+		<h3>Listado de Carreras</h3>
+		<div th:if="${lstcarreras != null and !lstcarreras.empty}">
 			<div class="table-responsive">
 				<table class="table table-dark table-hover">
 					<thead>
 						<tr>
 							<th>ID</th>
-							<th>Formato</th>
-							<th>Tipo</th>
-							<th>Duración</th>
+							<th>Nombre</th>
+							<th>Modalidad de Carrera</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="m:${lstmodalidades}">
-							<td th:text="${m.idModalidad}"></td>
-							<td th:text="${m.formato}"></td>
-							<td th:text="${m.tipo}"></td>
-							<td th:text="${m.duracion}"></td>
+						<tr th:each="p:${lstcarreras}">
+							<td th:text="${p.idCarrera}"></td>
+							<td th:text="${p.nombre}"></td>
+							<td th:text="${p.modalidad}"></td>
 							<td><a type="button" class="btn btn-primary"
-							 th:href="@{'/modalidades/editar/'+${m.idModalidad}}">Editar</a>
+							 th:href="@{'/carreras/editar/'+${p.idCarrera}}">Editar</a>
 							<td><a type="button" class="btn btn-danger"
-								th:href="@{'/modalidades/eliminar/'+${m.idModalidad}}">Eliminar</a>
+							 th:href="@{'/carreras/eliminar/'+${p.idCarrera}}">Eliminar</a>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
-		<div th:if="${lstmodalidades == null or lstmodalidades.empty}">
-				<h4>No hay modalidades registradas</h4>
-			</div>
+		<div th:if="${lstcarreras == null or lstcarreras.empty}">
+			<h4>No hay carreras registradas</h4>
+		</div>
 	</div>
+
 	<footer th:replace="master/master :: resource"></footer>
 </body>
 </html>

@@ -22,7 +22,6 @@ public class Pago {
 	@Column(name = "numeroTarjeta", nullable = false, length = 16)
 	private String numeroTarjeta;
 	
-	@Size(min = 3, max = 3, message="Ingrese un código de 3 dígitos")
 	@Column(name = "codigoTarjeta", nullable = false, length = 3)
 	private String codigoTarjeta;
 	

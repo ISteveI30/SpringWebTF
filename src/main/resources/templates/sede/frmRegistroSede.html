@@ -5,41 +5,32 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 	<header th:replace="master/master :: header"></header>
-	
-	
 	<div class="container">
-	<div>
-	
-	<form th:action="@{/sedes/guardar}" th:object="${s}" method="post">
-	
-	 <div class="col-sm-12">
-                    <label class="form-label">Id Sede: </label>
-                    <input class="form-control" type="text" th:field="*{idSede}" />
-                </div>
-                <div class="col-sm-12">
-                    <label class="form-label">Nombre: </label>
-                    <input class="form-control" type="text" th:field="*{nombre}" />
-                </div>
-                <div class="col-sm-12">
-                    <label class="form-label">Dirección: </label>
-                    <input class="form-control" type="text" th:field="*{direccion}" />
-                </div>
-                <div class="col-sm-12">
-                    <label class="form-label">Distrito: </label>
-                    <input class="form-control" type="text" th:field="*{distrito}" />
-                </div>
-                
-              <div class="col-sm-12">
-                    <input type="submit" value="Registrar" class="btn btn-primary" />
-                </div>
-	
-	</form>
-	
+		<div class="col-5 mx-auto mt-5 p-4 border">
+			<form th:action="@{/sedes/guardar}" th:object="${s}" method="post">
+				<h2 class="form-label text-center">Registrar Sede</h2>
+
+				<input class="form-control" type="hidden" th:field="*{idSede}" />
+				
+				<div class="col-sm-12">
+					<label class="form-label">Nombre: </label> <input
+						class="form-control" type="text" th:field="*{nombre}" />
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Dirección: </label> <input
+						class="form-control" type="text" th:field="*{direccion}" />
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Distrito: </label> <input
+						class="form-control" type="text" th:field="*{distrito}" />
+				</div>
+				<div class="col-3 mt-5 border mx-auto">
+					<input type="submit" value="Registrar" class="btn btn-primary" />
+				</div>
+			</form>
+		</div>
 	</div>
-	
-	
-	</div>
+	<footer th:replace="master/master :: resource"></footer>
 </body>
 </html>

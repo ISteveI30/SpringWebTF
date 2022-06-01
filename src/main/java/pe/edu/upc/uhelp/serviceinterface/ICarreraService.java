@@ -1,6 +1,8 @@
 package pe.edu.upc.uhelp.serviceinterface;
 
 import java.util.List;
+import java.util.Optional;
+
 import pe.edu.upc.uhelp.entities.Carrera;
 
 public interface ICarreraService {
@@ -12,4 +14,6 @@ public interface ICarreraService {
 	public void delete(int idCarrera);
 
 	public void update(Carrera person);
+	
+	Optional<Carrera> findCarrera(int idcarrera);
 }

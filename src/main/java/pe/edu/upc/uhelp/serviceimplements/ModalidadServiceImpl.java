@@ -17,13 +17,11 @@ public class ModalidadServiceImpl implements IModalidadService {
 
 	@Override
 	public void insert(Modalidad modalidad) {
-
 		modalidadRepository.save(modalidad);
 	}
 
 	@Override
 	public List<Modalidad> list() {
-
 		return modalidadRepository.findAll();
 	}
 

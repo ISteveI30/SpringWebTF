@@ -8,15 +8,17 @@
 <body>
 	<header th:replace="master/master :: header"></header>
 	<div class="container">
-		<div>
-			<form th:action="@{/modalidades/guardar}" th:object="${modalidad}" method="post">
+		<div class="col-5 mx-auto mt-5 p-4 border">
+			<h2 class="form-label text-center">Registrar Modalidad</h2>
+			<form th:action="@{/modalidades/guardar}" th:object="${modalidad}"
+				method="post">
+				<input class="form-control" type="hidden" th:field="*{idModalidad}" />
 				<div class="col-sm-12">
-					<label class="form-label">Id: </label> <input class="form-control"
-						type="text" th:field="*{idModalidad}" />
-				</div>
-				<div class="col-sm-12">
-					<label class="form-label">Formato: </label> <input
-						class="form-control" type="text" th:field="*{formato}" />
+					<label class="form-label">Formato: </label> <select
+						name="selectModalidad" class="form-control" th:field="*{formato}">
+						<option th:value="Presencial" selected>Presencial</option>
+						<option th:value="Virtual">Virtual</option>
+					</select>
 				</div>
 				<div class="col-sm-12">
 					<label class="form-label">Tipo: </label> <input
@@ -26,7 +28,7 @@
 					<label class="form-label">Duracion: </label> <input
 						class="form-control" type="text" th:field="*{duracion}" />
 				</div>
-				<div class="col-sm-12 form-control">
+				<div class="col-3 mt-5 border mx-auto">
 					<input class="btn btn-primary" type="submit" value="Registrar" />
 				</div>
 			</form>

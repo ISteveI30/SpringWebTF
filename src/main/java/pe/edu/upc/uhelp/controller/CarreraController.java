@@ -1,7 +1,6 @@
 package pe.edu.upc.uhelp.controller;
 
-import java.util.List;
-
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -17,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pe.edu.upc.uhelp.entities.Carrera;
 import pe.edu.upc.uhelp.serviceinterface.ICarreraService;
 
+@Controller
+@RequestMapping("/carreras")
 public class CarreraController {
+	
 	@Autowired
 	private ICarreraService carreraService;
-	List<Carrera> lstCarreras;
 	
 	@GetMapping("/registro")
 	public String newCarrera(Model model) {
@@ -34,7 +35,7 @@ public class CarreraController {
 		}else {
 			carreraService.insert(carrera);
 			model.addAttribute("mensaje","Se registró de manera correcta!!");
-			return "redirect:/carrera/registro";
+			return "redirect:/carreras/registro";
 		}		
 	}
 	@GetMapping("/listar")
@@ -46,7 +47,16 @@ public class CarreraController {
 		}
 		return "carrera/listCarrera";
 	}
-	
+	@RequestMapping("/editar/{id}")
+	public String editarCarrera(@PathVariable("id")int id, Model model) {
+		try {
+		Optional<Carrera> carrera=carreraService.findCarrera(id);
+		model.addAttribute("carrera", carrera.get());
+		} catch (Exception e) {
+		model.addAttribute("error", e.getMessage());
+		}
+		return "carrera/updateCarrera";
+	}
 	@RequestMapping("/eliminar/{id}")
 	public String deleteCarrera(@PathVariable("id")int id, Model model) {
 		try {

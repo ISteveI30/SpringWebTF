@@ -8,22 +8,22 @@
 <header th:replace="master/master :: header"></header>
 
 	<div class="container">
-		<div>
+		<div class="col-5 mx-auto mt-5 p-4 border">
+			<h2 class="form-label text-center">Registro Carrera</h2>
 			<form th:action="@{/carreras/guardar}" th:object="${carrera}" method="post">
-				<div class="col-sm-12">
-					<label class="form-label">Id: </label> <input class="form-control"
-						type="text" th:field="*{idCarrera}" />
-				</div>
+				<input class="form-control" type="hidden" th:field="*{idCarrera}" />
 				<div class="col-sm-12">
 					<label class="form-label">Carrera: </label> <input
 						class="form-control" type="text" th:field="*{nombre}" />
 				</div>
 				<div class="col-sm-12">
-					<label class="form-label">Modalidad: </label> <input
-						class="form-control" type="text" th:field="*{modalidad}" />
+					<label class="form-label">Modalidad de Carrera: </label> <select
+						name="selectModalidad" class="form-control" th:field="*{modalidad}">
+						<option th:value="Pregrado" selected>Pregrado</option>
+						<option th:value="EPE">EPE</option>
+					</select>
 				</div>
-				
-				<div class="col-sm-12 form-control">
+				<div class="col-3 mt-5 border mx-auto">
 					<input class="btn btn-primary" type="submit" value="Registrar" />
 				</div>
 			</form>
