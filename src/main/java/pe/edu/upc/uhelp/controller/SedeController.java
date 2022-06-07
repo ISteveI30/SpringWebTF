@@ -38,6 +38,7 @@ public class SedeController {
 		} else {
 			sedService.insert(sed);
 			model.addAttribute("mensaje", "Se registro correctamente!!");
+			model.addAttribute("listaSedes", sedService.list());
 			return "redirect:/sedes/nuevo";
 		}
 
