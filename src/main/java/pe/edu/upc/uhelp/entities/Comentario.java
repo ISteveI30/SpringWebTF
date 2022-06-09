@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "Comentarios")
@@ -15,7 +16,7 @@ public class Comentario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-
+	@NotEmpty(message= "Debe ingresar el contenido de su comentario*")
 	@Column(name = "descripcion", nullable = false, length = 50)
 	private String descripcion;
 	
