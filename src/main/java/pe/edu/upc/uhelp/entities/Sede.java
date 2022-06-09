@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "Sedes")
@@ -14,13 +15,15 @@ public class Sede {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idSede;
-	
+	@NotEmpty(message= "Debe ingresar el nombre de sede*")
 	@Column(name = "nombre", nullable = false, length = 45)
 	private String nombre;
 	
+	@NotEmpty(message= "Debe ingresar la dirección de la sede*")
 	@Column(name="direccion", nullable = false, length= 55)
 	private String direccion;
 	
+	@NotEmpty(message= "Debe ingresar el distrito donde se ubica la sede*")
 	@Column(name="distrito", nullable = false, length= 40)
 	private String distrito;
 
