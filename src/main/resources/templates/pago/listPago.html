@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="master/master :: head">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Pagos</title>
 </head>
 <body>
 	<header th:replace="master/master :: header"></header>
@@ -10,7 +10,7 @@
 		<h3>Listado de Pagos</h3>
 		<div th:if="${lstpagos != null and !lstpagos.empty}">
 			<div class="table-responsive">
-				<table class="table table-dark table-hover">
+				<table class="table table-success table-striped">
 					<thead>
 						<tr>
 							<th>ID</th>

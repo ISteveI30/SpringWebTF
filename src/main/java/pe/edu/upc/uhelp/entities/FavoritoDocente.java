@@ -20,19 +20,19 @@ public class FavoritoDocente {
 	@JoinColumn(name="idDocente")
 	private Docente docente;
 	
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumn(name="idEstudiante")
-	private Estudiante estudiante;
+	private Estudiante estudiante;*/
 
 	public FavoritoDocente() {
 		super();
 	}
 
-	public FavoritoDocente(int id, Docente docente, Estudiante estudiante) {
+	public FavoritoDocente(int id, Docente docente/*, Estudiante estudiante*/) {
 		super();
 		this.id = id;
 		this.docente = docente;
-		this.estudiante = estudiante;
+		//this.estudiante = estudiante;
 	}
 
 	public int getId() {
@@ -50,13 +50,13 @@ public class FavoritoDocente {
 	public void setDocente(Docente docente) {
 		this.docente = docente;
 	}
-
+/*
 	public Estudiante getEstudiante() {
 		return estudiante;
 	}
 
 	public void setEstudiante(Estudiante estudiante) {
 		this.estudiante = estudiante;
-	}
+	}*/
 
 }

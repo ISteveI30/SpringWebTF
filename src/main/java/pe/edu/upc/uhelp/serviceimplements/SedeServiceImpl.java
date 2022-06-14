@@ -17,32 +17,26 @@ public class SedeServiceImpl implements ISedeService{
 	private ISedeRepository sedeRepository;
 	@Override
 	public void insert(Sede sede) {
-		sedeRepository.save(sede);
-		// TODO Auto-generated method stub
-		
+		sedeRepository.save(sede);		
 	}
 
 	@Override
 	public List<Sede> list() {
-		// TODO Auto-generated method stub
 		return sedeRepository.findAll();
 	}
 
 	@Override
 	public void delete(int idPerson) {
-		// TODO Auto-generated method stub
 		sedeRepository.deleteById(idPerson);
 	}
 
 	@Override
 	public Optional<Sede> listId(int idSede) {
-		// TODO Auto-generated method stub
 		return sedeRepository.findById(idSede);
 	}
 
 	@Override
 	public void update(Sede sede) {
-		// TODO Auto-generated method stub
 		sedeRepository.save(sede);
 	}
 

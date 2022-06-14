@@ -37,7 +37,7 @@ public class EstudianteServiceImpl  implements EstudianteService{
 	}
 
 	@Override
-	public Optional<Estudiante> findCarrera(int idEstudiante) {
+	public Optional<Estudiante> findEstudiante(int idEstudiante) {
 		return estudianteRepository.findById(idEstudiante);
 	}
 

@@ -30,7 +30,7 @@ public class PromocionServiceImpl implements IPromocionService {
 	}
 
 	@Override
-	public Optional<Promocion> findModalidad(int idPromocion) {
+	public Optional<Promocion> findPromocion(int idPromocion) {
 		return promocionRepository.findById(idPromocion);
 	}
 

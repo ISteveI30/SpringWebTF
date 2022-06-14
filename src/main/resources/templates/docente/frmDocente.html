@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Docentes</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<link rel="stylesheet" th:href="@{/css/botones.css}" />
+</head>
+<body>
+
+	<header th:replace="master/master :: header"> </header>
+
+	<div class="row  mx-auto mt-3 container">
+		<h3>Docentes</h3>
+		<div class="col-8">
+			<div th:if="${lstdocentes != null and !lstdocentes.empty}">
+
+				<div th:each="d : ${lstdocentes}" class="list-group-item bg-dark">
+					<div class="card mb-3 border border-primary p-2">
+						<div class="row g-0">
+							<div class="col-md-4">
+								<img src="/img/abrazo.jpg"
+									class="img-fluid rounded-start imagen
+								border border-dark"
+									alt="docente">
+							</div>
+							<div class="col-md-6">
+								<div class="card-body">
+									<!--<h5 class="card-text" th:text="*{idDocente}"></h5>-->
+									<h5 class="card-text"
+										th:text="'Docente: '+${d.nombre}+' '+${d.apellido}"></h5>
+									<h6 class="card-text" th:text="'DNI: '+${d.dni}"></h6>
+									<!-- 
+									<p class="card-text">Puntaje <spam th:text="*{d.puntaje}"></spam>
+										Estrellas</p>
+									div class="d-flex justify-content-end">
+										<small class="text-muted"></small>
+									th:text="*{post.date}"
+									</div> -->
+								</div>
+							</div>
+							<div class="col-2">
+								<div class="container mt-5 me-3">
+									<div class="btn-group-vertical">
+										<a class="btn btn-danger" type="button"
+											th:href="@{'/docentes/eliminar/'+${d.idDocente}}"> <i
+											class="bi bi-trash"></i> Delete
+										</a> <a class="btn btn-primary mt-3" type="button"
+											th:href="@{'/docentes/editar/'+${d.idDocente}}"> <i
+											class="bi bi-pencil-square"></i> Edit
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div th:if="${lstdocentes == null or lstdocentes.empty}">
+				<h4>No hay docentes registrados</h4>
+			</div>
+		</div>
+
+
+		<div class="col-4">
+			<div class="container border border-primary">
+				<h4 class="text-center mt-3">Registra un docente</h4>
+				<section>
+					<p>
+					<p>
+				</section>
+				<div class="row">
+					<button type="button" class="btn btn-success p-1 my-3"
+						data-bs-toggle="modal" data-bs-target="#modalRegistro">Agregar</button>
+				</div>
+				<!-- Button trigger modal -->
+
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Modal Registro-->
+	<div class="modal fade" id="modalRegistro" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!----- Header ------>
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Registrar
+						Docente</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<form th:action="@{/docentes/guardar}" th:object="${d}"
+					method="post">
+					<!----- Body ------>
+					<div class="modal-body">
+						<input class="form-control" type="hidden" th:field="*{idDocente}" />
+						<div class="col-sm-12">
+							<label class="col-form-label">Nombre: </label> <input
+								class="form-control" type="text" th:field="*{nombre}" />
+						</div>
+						<div class="col-sm-12">
+							<label class="col-form-label">Apellido: </label> <input
+								class="form-control" type="text" th:field="*{apellido}" />
+						</div>
+						<div class="col-sm-12">
+							<label class="col-form-label">DNI: </label> <input
+								class="form-control" type="text" th:field="*{dni}" />
+						</div>
+						<div class="col-sm-12">
+							<input class="form-control" type="hidden" th:field="*{puntaje}" />
+						</div>
+					</div>
+					<!----- Footer ------>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger"
+							data-bs-dismiss="modal">Cancelar</button>
+						<input type="submit" value="Registrar" class="btn btn-primary" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="master/master :: resource"></footer>
+</body>
+</html>

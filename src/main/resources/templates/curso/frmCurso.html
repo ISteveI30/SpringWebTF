@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Curso</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+	<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+<link rel="stylesheet" th:href="@{/css/fuente.css}" />
+<link rel="stylesheet" th:href="@{/css/botones.css}" />
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+
+	<div class="row container mx-auto mt-4 ">
+		<h3>Listado de Cursos</h3>
+		<div class="col-9">
+			<div th:if="${lstcursos != null and !lstcursos.empty}">
+
+				<div th:each="c : ${lstcursos}" class="list-group-item bg-dark">
+					<div class="card mb-3 border border-primary p-2">
+						<div class="row g-0">
+							<div class="col-4">
+								<img src="/img/abrazo.jpg"
+									class="img-fluid rounded-start imagen
+								border border-dark"
+									alt="docente" >
+							</div>
+							<div class="col-6">
+								<div class="card-body">
+									<!--<h5 class="card-text" th:text="*{c.idCurso}"></h5>-->
+									<h6 class="card-text"
+										th:text="'Curso: '+${c.nombre}"></h6>
+									<h6 class="card-text" th:text="'Inicio: '+${#dates.format(c.inicio,'dd/MM/yyyy')}"></h6>
+									<h6 class="card-text" th:text="'Culminación: '+${#dates.format(c.culminacion,'dd/MM/yyyy')}"></h6>
+									<h6 class="card-text" th:text="'Modalidad: '+${c.modalidad.tipo}+' - '+${c.modalidad.formato}"></h6>
+									<h6 class="card-text" th:text="'Vacantes: '+${c.vacantes}"></h6>
+									 
+									<div class="d-flex justify-content-end">
+										<small class="text-muted" th:text="'S/.'+*{c.precio}+'0'"></small>
+									</div>
+									<div class="d-flex justify-content-end">
+										<small class="text-muted" th:text="*{c.carrera.nombre}"></small>
+									</div> 
+								</div>
+							</div>
+							<div class="col-2">
+								<div class="container mt-5 me-3">
+									<div class="btn-group-vertical">
+										<a class="btn btn-danger" type="button"
+											th:href="@{'/cursos/eliminar/'+${c.idCurso}}"> <i
+											class="bi bi-trash"></i> Delete
+										</a> <a class="btn btn-primary mt-3" type="button"
+											th:href="@{'/cursos/editar/'+${c.idCurso}}"> <i
+											class="bi bi-pencil-square"></i> Edit
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+
+			</div>
+			<div th:if="${lstcursos == null or lstcursos.empty}">
+				<h4>No hay cursos registrados</h4>
+			</div>
+		</div>
+
+		<div class="col-3">
+			<div class="container border border-primary">
+				<h5 class="text-center mt-3">Registra un Curso</h5>
+				<section>
+					<p>
+					<p>
+				</section>
+				<div class="row">
+					<button type="button" class="btn btn-success p-1 my-3"
+						data-bs-toggle="modal" data-bs-target="#modalRegistro">Agregar</button>
+				</div>
+				<!-- Button trigger modal -->
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal Registro-->
+	<div class="modal fade" id="modalRegistro" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!----- Header ------>
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Registrar
+						Curso</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<form th:action="@{/cursos/guardar}" th:object="${curso}"
+					method="post">
+					<!----- Body ------>
+					<div class="modal-body">
+						<input class="form-control" type="hidden" th:field="*{idCurso}" />
+						<div class="col-sm-12">
+							<label class="form-label">Curso: </label> <input
+								class="form-control" type="text" th:field="*{nombre}" />
+						</div>
+						<div class="col-sm-12">
+							<label class="form-label">Inicio de Curso: </label> <input
+								class="form-control" type="date" th:field="*{inicio}" />
+						</div>
+						<div class="col-sm-12">
+							<label class="form-label">Culminación de Curso: </label> <input
+								class="form-control" type="date" th:field="*{culminacion}" />
+						</div>
+						<div class="col-sm-12">
+							<label class="form-label">Precio: </label> <input
+								class="form-control" type="text" th:field="*{precio}" />
+						</div>
+						<div class="col-sm-12">
+							<label class="form-label">Vacantes: </label> <input
+								class="form-control" type="text" th:field="*{vacantes}" />
+						</div>
+						<div class="col-sm-12">
+							<label class="form-label">Modalidad: </label> <select
+								name="selectModalidad" class="form-control"
+								th:field="*{modalidad.idModalidad}">
+								<option th:each="m:${lstmodalidades}"
+									th:value="${m.idModalidad}"
+									th:text="${m.tipo}+' - '+${m.formato}"
+									th:selected="(${m.idModalidad}==*{modalidad.idModalidad})"></option>
+							</select>
+						</div>
+						<div class="col-sm-12">
+							<label class="form-label">Carrera: </label> <select
+								name="selectPerson" class="form-control"
+								th:field="*{carrera.idCarrera}">
+								<option th:each="c:${lstcarreras}" th:value="${c.idCarrera}"
+									th:text="${c.modalidad}+' - '+${c.nombre}"
+									th:selected="(${c.idCarrera}==*{carrera.idCarrera})"></option>
+							</select>
+						</div>
+					</div>
+					<!----- Footer ------>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger"
+							data-bs-dismiss="modal">Cancelar</button>
+						<input type="submit" value="Registrar" class="btn btn-primary" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="master/master :: resource"></footer>
+</body>
+</html>

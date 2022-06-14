@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -36,7 +38,9 @@ public class Curso {
 	@Column(name = "culminacion", nullable = false)
 	private Date culminacion;
 	
-	@Column(name = "precio", nullable = false)
+	@DecimalMin("10.00")
+	@DecimalMax("200.00")
+	@Column(name = "precio", columnDefinition = "Decimal(8,2)", nullable = false)
 	private double precio;
 	
 	@Column(name = "vacantes", nullable = false, length = 3)
@@ -49,22 +53,13 @@ public class Curso {
 	@ManyToOne
 	@JoinColumn(name="idCarrera")
 	private Carrera carrera;
+	
+	/*@ManyToOne
+	@JoinColumn(name="idAcademia")
+	private Academia academia;*/
 		
 	public Curso() {
 		super();
-	}
-
-	public Curso(int idCurso, String nombre, Date inicio, Date culminacion, double precio, String vacantes,
-			Modalidad modalidad, Carrera carrera) {
-		super();
-		this.idCurso = idCurso;
-		this.nombre = nombre;
-		this.inicio = inicio;
-		this.culminacion = culminacion;
-		this.precio = precio;
-		this.vacantes = vacantes;
-		this.modalidad = modalidad;
-		this.carrera = carrera;
 	}
 
 	public int getIdCurso() {
@@ -129,6 +124,13 @@ public class Curso {
 
 	public void setCarrera(Carrera carrera) {
 		this.carrera = carrera;
-	}	
-		
+	}
+
+	/*public Academia getAcademia() {
+		return academia;
+	}
+
+	public void setAcademia(Academia academia) {
+		this.academia = academia;
+	}*/	
 }

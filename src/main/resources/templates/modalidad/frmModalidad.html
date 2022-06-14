@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Modalidad</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="row  mx-auto mt-3 container">
+		<h3>Listado de Modalidades</h3>
+		<div class="col-8">
+			<div th:if="${lstmodalidades != null and !lstmodalidades.empty}">
+				<div class="table-responsive">
+					<table class="table table-success table-striped">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Formato</th>
+								<th>Tipo</th>
+								<th>Duración</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="m:${lstmodalidades}">
+								<td th:text="${m.idModalidad}"></td>
+								<td th:text="${m.formato}"></td>
+								<td th:text="${m.tipo}"></td>
+								<td th:text="${m.duracion}"></td>
+								<td><a type="button" class="btn btn-primary"
+									th:href="@{'/modalidades/editar/'+${m.idModalidad}}">Editar</a>
+								<td><a type="button" class="btn btn-danger"
+									th:href="@{'/modalidades/eliminar/'+${m.idModalidad}}">Eliminar</a>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div th:if="${lstmodalidades == null or lstmodalidades.empty}">
+				<h4>No hay modalidades registradas</h4>
+			</div>
+		</div>
+
+		<div class="col-4">
+			<div class="container border border-primary">
+				<h2 class="form-label text-center">Registrar Modalidad</h2>
+				<form th:action="@{/modalidades/guardar}" th:object="${modalidad}"
+					method="post">
+					<input class="form-control" type="hidden" th:field="*{idModalidad}" />
+					<div class="col-sm-12">
+						<label class="form-label">Formato: </label> <select
+							name="selectModalidad" class="form-control" th:field="*{formato}">
+							<option th:value="Presencial" selected>Presencial</option>
+							<option th:value="Virtual">Virtual</option>
+						</select>
+					</div>
+					<div class="col-sm-12">
+						<label class="form-label">Tipo: </label> <input
+							class="form-control" type="text" th:field="*{tipo}" />
+					</div>
+					<div class="col-sm-12">
+						<label class="form-label">Duracion: </label> <input
+							class="form-control" type="text" th:field="*{duracion}" />
+					</div>
+					<div class="col-3 mt-5 border mx-auto">
+						<input class="btn btn-primary" type="submit" value="Registrar" />
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+	<footer th:replace="master/master :: resource"></footer>
+</body>
+</html>

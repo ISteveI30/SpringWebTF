@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Cursos</title>
+</head>
+<body>
+
+	<header th:replace="master/master :: header"></header>
+
+	<div class="container mt-3">
+		<h3 class="text-center ">Cursos</h3>
+
+		<div class="container mt-3">
+			<div class="row">
+				<div class="col g-3" th:each="c : ${lstcursos}">
+					<div class="card" style="width: 22rem">
+						<img src="/img/abrazo.jpg" class="card-img-top" alt="..."
+							width="100%" height="225">
+						<div class="card-body">
+							<h5 class="card-text" th:text="*{c.nombre}"></h5>
+							<p class="card-text"
+								th:text="'Modalidad: '+${c.modalidad.tipo}+' - '+${c.modalidad.formato}"></p>
+
+							<p class="text-muted text-end" th:text="'S/.'+*{c.precio}+'0'"></p>
+							<p class="text-muted text-end" th:text="*{c.carrera.nombre}"></p>
+							<a type="button" class="btn btn-primary" th:href="@{'/estudiantes/view/'+${c.idCurso}}">ver mas</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container mx-auto mt-5">
+		<div class="row">
+			<div class="col-md-12">
+				<div id="carouselControls" class="carousel slide"
+					data-bs-ride="carousel" style="height: 20rem;">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<div class="row">
+								<div class="card me-3" style="width: 18rem;">
+									<img src="/img/abrazo.jpg" class="card-img-top" alt="">
+									<div class="card-cuerpo">
+										<h5 class="card-title">Física III</h5>
+										<h6 class="card-subtitle mb-2 text-muted">Ing de sistemas
+											</h6>
+
+										<p class="text-muted text-end">S/. 22.00</p>
+										<div class="container m-auto">
+											<a href="" class="btn btn-warning">Comprar</a> <a href=""
+												class="btn btn-warning ms-2">Ver reseñas</a>
+										</div>
+									</div>
+								</div>
+
+								<div class="card me-3" style="width: 18rem;">
+									<img src="/img/abrazo.jpg" class="card-img-top" alt="">
+									<div class="card-cuerpo">
+										<h5 class="card-title">Desing Thinking</h5>
+										<h6 class="card-subtitle mb-2 text-muted">Administración
+											</h6>
+
+										<p class="text-muted text-end">S/. 14.00</p>
+										<div class="container m-auto">
+											<a href="" class="btn btn-warning">Comprar</a> <a href=""
+												class="btn btn-warning ms-2">Ver reseñas</a>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="card me-3" style="width: 18rem;">
+									<img src="/img/abrazo.jpg" class="card-img-top" alt="">
+									<div class="card-cuerpo">
+										<h5 class="card-title">Matemática Básica</h5>
+										<h6 class="card-subtitle mb-2 text-muted">Ing de Software</h6>
+
+										<p class="text-muted text-end">S/. 41.00</p>
+										<div class="container m-auto">
+											<a href="" class="btn btn-warning">Comprar</a> <a href=""
+												class="btn btn-warning ms-2">Ver reseñas</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="carousel-item">
+							<div class="row">
+								<div class="card me-3" style="width: 18rem;">
+									<img src="/img/abrazo.jpg" class="card-img-top" alt="">
+									<div class="card-cuerpo">
+										<h5 class="card-title">Ética</h5>
+										<h6 class="card-subtitle mb-2 text-muted">Ing Civil</h6>
+
+										<p class="text-muted text-end">S/. 50.00</p>
+										<div class="container m-auto">
+											<a href="" class="btn btn-warning">Comprar</a> <a href=""
+												class="btn btn-warning ms-2">Ver reseñas</a>
+										</div>
+									</div>
+								</div>
+
+								<div class="card me-3" style="width: 18rem;">
+									<img src="/img/abrazo.jpg" class="card-img-top" alt="">
+									<div class="card-cuerpo">
+										<h5 class="card-title">Algoritmos I</h5>
+										<h6 class="card-subtitle mb-2 text-muted">Ing de sistemas</h6>
+
+										<p class="text-muted text-end">S/. 13.00</p>
+										<div class="container m-auto">
+											<a href="" class="btn btn-warning">Comprar</a> <a href=""
+												class="btn btn-warning ms-2">Ver reseñas</a>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="card me-3" style="width: 18rem;">
+									<img src="/img/abrazo.jpg" class="card-img-top" alt="">
+									<div class="card-cuerpo">
+										<h5 class="card-title">Calculo II</h5>
+										<h6 class="card-subtitle mb-2 text-muted">Administración</h6>
+
+										<p class="text-muted text-end">S/. 23.00</p>
+										<div class="container m-auto">
+											<a href="" class="btn btn-warning">Comprar</a> <a href=""
+												class="btn btn-warning ms-2">Ver reseñas</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+
+						<div class="boton-contenedor">
+							<button class="carousel-control-prev" type="button"
+								data-bs-target="#carouselControls" data-bs-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Previous</span>
+							</button>
+							<button class="carousel-control-next" type="button"
+								data-bs-target="#carouselControls" data-bs-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Next</span>
+							</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="master/master :: resource"></footer>
+</body>
+</html>

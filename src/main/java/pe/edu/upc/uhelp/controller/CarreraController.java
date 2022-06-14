@@ -23,29 +23,35 @@ public class CarreraController {
 	@Autowired
 	private ICarreraService carreraService;
 	
+	/*@GetMapping("/inicio")
+	public String inicio(Model model) {
+		return "temporales/inicio";
+	}*//*
 	@GetMapping("/registro")
 	public String newCarrera(Model model) {
 		model.addAttribute("carrera",new Carrera());
 		return "carrera/registroCarrera";
-	}
+	}*/
 	@PostMapping("/guardar")
 	public String saveCarrera(@Valid Carrera carrera,BindingResult binRes,Model model) {
 		if(binRes.hasErrors()) {
-			return "carrera/registroCarrera";	
+			return "carrera/frmCarrera";	
 		}else {
 			carreraService.insert(carrera);
 			model.addAttribute("mensaje","Se registró de manera correcta!!");
-			return "redirect:/carreras/registro";
+			model.addAttribute("lstcarreras",carreraService.list());
+			return "redirect:/carreras/listar";
 		}		
 	}
 	@GetMapping("/listar")
 	public String listCarrera(Model model) {
 		try {
+			model.addAttribute("carrera",new Carrera());
 			model.addAttribute("lstcarreras",carreraService.list());
 		} catch (Exception e) {
 			model.addAttribute("error",e.getMessage());
 		}
-		return "carrera/listCarrera";
+		return "carrera/frmCarrera";
 	}
 	@RequestMapping("/editar/{id}")
 	public String editarCarrera(@PathVariable("id")int id, Model model) {
@@ -70,8 +76,9 @@ public class CarreraController {
 		return "redirect:/carreras/listar";
 	}
 	@PostMapping("/modificar")
-	public String updateCarrera(Carrera carrera) {
+	public String updateCarrera(Carrera carrera,Model model) {
 			carreraService.update(carrera);
+			model.addAttribute("lstcarreras",carreraService.list());
 			return "redirect:/carreras/listar";
 	}
 }

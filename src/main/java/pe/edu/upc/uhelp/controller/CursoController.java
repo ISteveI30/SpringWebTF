@@ -28,32 +28,36 @@ public class CursoController {
 	private ICarreraService carreraService;
 	@Autowired
 	private IModalidadService modalidadService;
-	
+	/*
 	@GetMapping("/registro")
 	public String newCurso(Model model) {
 		model.addAttribute("curso",new Curso());
 		model.addAttribute("lstcarreras",carreraService.list());
 		model.addAttribute("lstmodalidades",modalidadService.list());
 		return "curso/registroCurso";
-	}
+	}*/
 	@PostMapping("/guardar")
 	public String saveCurso(@Valid Curso curso,BindingResult binRes,Model model) {
 		if(binRes.hasErrors()) {
-			return "curso/registroCurso";	
+			return "curso/frmCurso";	
 		}else {
 			cursoService.insert(curso);
 			model.addAttribute("mensaje","Se registró de manera correcta!!");
-			return "redirect:/cursos/registro";
+			model.addAttribute("lstcursos",cursoService.list());
+			return "redirect:/cursos/listar";
 		}		
 	}
 	@GetMapping("/listar")
 	public String listCurso(Model model) {
 		try {
+			model.addAttribute("curso",new Curso());
 			model.addAttribute("lstcursos",cursoService.list());
+			model.addAttribute("lstcarreras",carreraService.list());
+			model.addAttribute("lstmodalidades",modalidadService.list());
 		} catch (Exception e) {
 			model.addAttribute("error",e.getMessage());
 		}
-		return "curso/listCurso";
+		return "curso/frmCurso";
 	}
 	@RequestMapping("/editar/{id}")
 	public String editarCurso(@PathVariable("id")int id, Model model) {
@@ -80,8 +84,11 @@ public class CursoController {
 		return "redirect:/cursos/listar";
 	}
 	@PostMapping("/modificar")
-	public String updateCurso(Curso curso) {
+	public String updateCurso(Curso curso,Model model) {
 		cursoService.update(curso);
+		model.addAttribute("lstcursos",cursoService.list());
+		model.addAttribute("lstcarreras",carreraService.list());
+		model.addAttribute("lstmodalidades",modalidadService.list());
 			return "redirect:/cursos/listar";
 	}
 	

@@ -34,12 +34,12 @@ public class SedeController {
 	@PostMapping("/guardar")
 	public String savePerson(@Valid Sede sed, BindingResult binRes, Model model) {
 		if (binRes.hasErrors()) {
-			return "sede/frmRegistroSede";
+			return "/sede/frmListaSede";
 		} else {
 			sedService.insert(sed);
 			model.addAttribute("mensaje", "Se registro correctamente!!");
 			model.addAttribute("listaSedes", sedService.list());
-			return "redirect:/sedes/nuevo";
+			return "redirect:/sedes/listar";
 		}
 
 	}
@@ -47,6 +47,7 @@ public class SedeController {
 	@GetMapping("/listar")
 	public String listSede(Model model) {
 		try {
+			model.addAttribute("s", new Sede());
 			model.addAttribute("listaSedes", sedService.list());
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -66,7 +67,7 @@ public class SedeController {
 		} catch (Exception e) {
 			model.put("error", e.getMessage());
 		}
-		return "/sede/frmListaSede";
+		return "redirect:/sedes/listar";
 	}
 	
 	@RequestMapping("/irmodificar/{id}")

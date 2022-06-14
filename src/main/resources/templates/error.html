@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+
+	<div class="container">
+		<h1>No tienes Acceso a esta página</h1>
+		<a class="nav-link active" th:href="@{/inicio}">Regresar</a>
+	</div>
+	<footer th:replace="master/master :: resource"></footer>
+</body>
+</html>

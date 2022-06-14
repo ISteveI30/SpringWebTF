@@ -19,20 +19,20 @@ public class FavoritoCurso {
 	@JoinColumn (name="idCurso")
 	private Curso curso;
 	
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumn (name="idEstudiante")
-	private Estudiante estudiante;
+	private Estudiante estudiante;*/
 
 	public FavoritoCurso() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public FavoritoCurso(int id, Curso curso, Estudiante estudiante) {
+	public FavoritoCurso(int id, Curso curso/*, Estudiante estudiante*/) {
 		super();
 		this.id = id;
 		this.curso = curso;
-		this.estudiante = estudiante;
+		//this.estudiante = estudiante;
 	}
 
 	public int getId() {
@@ -51,14 +51,11 @@ public class FavoritoCurso {
 		this.curso = curso;
 	}
 
-	public Estudiante getEstudiante() {
+	/*public Estudiante getEstudiante() {
 		return estudiante;
 	}
 
 	public void setEstudiante(Estudiante estudiante) {
 		this.estudiante = estudiante;
-	}
-	
-	
-
+	}*/
 }

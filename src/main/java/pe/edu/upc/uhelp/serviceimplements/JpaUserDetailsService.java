@@ -17,29 +17,26 @@ import pe.edu.upc.uhelp.entities.Rol;
 import pe.edu.upc.uhelp.entities.Users;
 import pe.edu.upc.uhelp.repositories.UserRepository;
 
-
 @Service
 public class JpaUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private UserRepository userRepository;
-
+	
 	@Transactional(readOnly = true)
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		System.out.println("username: "+ username);
 		Users user = userRepository.findByUsername(username);
-		/*
-		if(user == null) {
+		if (user == null) {
+			System.out.println("Error al logear");
 			throw new UsernameNotFoundException(username);
 		}
-		*/
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-
-		for (Rol role : user.getRoles()) {
-			authorities.add(new SimpleGrantedAuthority(role.getRol()));
+		for (Rol rol : user.getRoles()) {
+			//System.out.println("rol de la lista: "+rol.getRol());
+			authorities.add(new SimpleGrantedAuthority(rol.getRol()));
 		}
-
-		return new User(user.getUsername(), user.getPassword(), authorities);
+		return new User(user.getUsername(), user.getPassword(), user.getEnabled(), true, true, true,authorities);
 	}
-
 }

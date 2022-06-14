@@ -13,7 +13,7 @@ public interface IPromocionService {
 
 	public void delete(int idPromocion);
 
-	Optional<Promocion> findModalidad(int idPromocion);
+	Optional<Promocion> findPromocion(int idPromocion);
 
 	public void update(Promocion promocion);
 }

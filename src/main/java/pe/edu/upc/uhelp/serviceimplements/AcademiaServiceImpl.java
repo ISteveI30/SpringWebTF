@@ -37,7 +37,7 @@ public class AcademiaServiceImpl implements AcademiaService{
 	}
 
 	@Override
-	public Optional<Academia> findCarrera(int idAcademia) {
+	public Optional<Academia> findAcademia(int idAcademia) {
 		return academiaRepository.findById(idAcademia);
 	}
 

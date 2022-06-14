@@ -20,16 +20,16 @@ public class Promocion{
 	@Column(name = "titulo", nullable = false, length = 30)
 	private String titulo;
 	
-	@Column(name = "descripcion", nullable = false, length = 30)
+	@Column(name = "descripcion", nullable = false, length = 200)
 	private String descripcion;
 	
 	@ManyToOne
     @JoinColumn(name="idDocente")
     private Docente docente;
 	
-	@ManyToOne
+	/*@ManyToOne
     @JoinColumn(name="idAcademia")
-    private Academia academia;
+    private Academia academia;*/
 	
 	@ManyToOne
     @JoinColumn(name="idCurso")
@@ -37,10 +37,9 @@ public class Promocion{
 
 	public Promocion() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Promocion(int idPromocion, String titulo, String descripcion, Docente docente, Academia academia,
+	/*public Promocion(int idPromocion, String titulo, String descripcion, Docente docente, Academia academia,
 			Curso curso) {
 		super();
 		this.idPromocion = idPromocion;
@@ -49,7 +48,7 @@ public class Promocion{
 		this.docente = docente;
 		this.academia = academia;
 		this.curso = curso;
-	}
+	}*/
 
 	public int getIdPromocion() {
 		return idPromocion;
@@ -83,13 +82,13 @@ public class Promocion{
 		this.docente = docente;
 	}
 
-	public Academia getAcademia() {
+	/*public Academia getAcademia() {
 		return academia;
 	}
 
 	public void setAcademia(Academia academia) {
 		this.academia = academia;
-	}
+	}*/
 
 	public Curso getCurso() {
 		return curso;

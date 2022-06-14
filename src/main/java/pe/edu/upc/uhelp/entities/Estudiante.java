@@ -9,10 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
-
 @Entity
-@Table(name = "Estudiantes")
+@Table(name = "estudiantes")
 public class Estudiante {
 
 	@Id

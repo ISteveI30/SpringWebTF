@@ -13,7 +13,7 @@ public interface IDocenteService {
 
 	public void delete(int idDocente);
 
-	Optional<Docente> findModalidad(int idDocente);
+	Optional<Docente> findDocente(int idDocente);
 
 	public void update(Docente docente);
 }

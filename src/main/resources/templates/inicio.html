@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="master/master :: head">
 <meta charset="UTF-8">
 <title>U-HELP</title>
@@ -7,10 +8,17 @@
 <body>
 	<header th:replace="master/master :: header"></header>
 	<div class="container mx-auto mt-5">
+	
 		<h3 class="text-center">U-Help</h3>
 		<div class="container col-7" >
 		<img alt="abrazo eterno" class="container mx-auto"
 		th:src="@{/img/academias.jpg}" width="400" height="300">
+		
+		<div sec:authorize="hasRole('ROLE_ACADEMY')">
+			<h3>Eres una academia</h3>	
+		</div>
+		<h3 sec:authorize="hasRole('ROLE_STUDENT')">Eres un estudiante</h3>
+		
 		</div>
 	</div>
 	

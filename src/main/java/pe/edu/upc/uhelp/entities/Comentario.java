@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,28 +14,28 @@ public class Comentario {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
-	@Column(name = "descripcion", nullable = false, length = 50)
+	@Column(name = "descripcion", nullable = false, length = 200)
 	private String descripcion;
 	
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumn (name="idAcademia")
 	private Academia academia;
 	
 	@ManyToOne
 	@JoinColumn (name="idEstudiante")
-	private Estudiante estudiante;
+	private Estudiante estudiante;*/
 
 	public Comentario() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Comentario(int id, String descripcion, Academia academia, Estudiante estudiante) {
+	public Comentario(int id, String descripcion/*, Academia academia, Estudiante estudiante*/) {
 		super();
 		this.id = id;
 		this.descripcion = descripcion;
-		this.academia = academia;
-		this.estudiante = estudiante;
+		/*this.academia = academia;
+		this.estudiante = estudiante;*/
 	}
 
 	public int getId() {
@@ -56,7 +54,7 @@ public class Comentario {
 		this.descripcion = descripcion;
 	}
 
-	public Academia getAcademia() {
+	/*public Academia getAcademia() {
 		return academia;
 	}
 
@@ -70,7 +68,5 @@ public class Comentario {
 
 	public void setEstudiante(Estudiante estudiante) {
 		this.estudiante = estudiante;
-	}
-	
-	
+	}*/
 }

@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,24 +24,18 @@ public class Docente {
 	@Column(name = "dni", nullable = false, length = 30)
 	private String dni;
 	
-	@Column(name = "puntaje", nullable = false)
+	@Column(name = "puntaje", nullable = true)
 	private int puntaje;
 
-	@ManyToOne
+	/*@ManyToOne
     @JoinColumn(name="idAcademia")
-    private Academia academia;
-	
-	@ManyToOne
-    @JoinColumn(name="idCurso")
-    private Curso curso;
+    private Academia academia;*/
 
 	public Docente() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Docente(int idDocente, String nombre, String apellido, String dni, int puntaje, Academia academia,
-			Curso curso) {
+	/*public Docente(int idDocente, String nombre, String apellido, String dni, int puntaje, Academia academia) {
 		super();
 		this.idDocente = idDocente;
 		this.nombre = nombre;
@@ -51,8 +43,7 @@ public class Docente {
 		this.dni = dni;
 		this.puntaje = puntaje;
 		this.academia = academia;
-		this.curso = curso;
-	}
+	}*/
 
 	public int getIdDocente() {
 		return idDocente;
@@ -94,21 +85,12 @@ public class Docente {
 		this.puntaje = puntaje;
 	}
 
-	public Academia getAcademia() {
+	/*public Academia getAcademia() {
 		return academia;
 	}
 
 	public void setAcademia(Academia academia) {
 		this.academia = academia;
-	}
-
-	public Curso getCurso() {
-		return curso;
-	}
-
-	public void setCurso(Curso curso) {
-		this.curso = curso;
-	}
-	
+	}*/
 	
 }

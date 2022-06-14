@@ -24,31 +24,33 @@ public class ModalidadController {
 	private IModalidadService modService;
 	List<Modalidad> lstModalidades;
 
-	@GetMapping("/registro")
+	/*@GetMapping("/registro")
 	public String newModalidad(Model model) {
 		model.addAttribute("modalidad", new Modalidad());
 		return "modalidad/registroModalidad";
-	}
+	}*/
 
 	@PostMapping("/guardar")
 	public String saveModalidad(@Valid Modalidad modalidad, BindingResult binRes, Model model) {
 		if (binRes.hasErrors()) {
-			return "modalidad/registroModalidad";
+			return "modalidad/frmModalidad";
 		} else {
 			modService.insert(modalidad);
 			model.addAttribute("mensaje", "Se registró correctamente la modalidad!");
-			return "redirect:/modalidades/registro";
+			model.addAttribute("lstmodalidades", modService.list());
+			return "redirect:/modalidades/listar";
 		}
 	}
 
 	@GetMapping("/listar")
 	public String listModalidad(Model model) {
 		try {
+			model.addAttribute("modalidad", new Modalidad());
 			model.addAttribute("lstmodalidades", modService.list());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "/modalidad/listModalidad";
+		return "/modalidad/frmModalidad";
 	}
 
 	@RequestMapping("/editar/{id}")
@@ -76,8 +78,9 @@ public class ModalidadController {
 		return "redirect:/modalidades/listar";
 	}
 	@PostMapping("/modificar")
-	public String updateModalidad(Modalidad modalidad) {
+	public String updateModalidad(Modalidad modalidad, Model model) {
 		modService.update(modalidad);
+		model.addAttribute("lstmodalidades", modService.list());
 		return "redirect:/modalidades/listar";
 	}
 }

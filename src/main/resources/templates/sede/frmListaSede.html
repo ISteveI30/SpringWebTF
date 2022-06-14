@@ -10,6 +10,10 @@
 	<div class="container mx-auto mt-4">
 		<div>
 			<h3>Listado de Sedes</h3>
+
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+				data-bs-target="#modalRegistro">Agregar</button>
 			<div th:if="${listaSedes != null and !listaSedes.empty}">
 				<div class="table-responsive">
 					<table class="table table-dark table-hover">
@@ -28,10 +32,9 @@
 								<td th:text="${s.direccion}"></td>
 								<td th:text="${s.distrito}"></td>
 								<td><a type="button" class="btn btn-primary"
-								th:href="@{'/sedes/irmodificar/'+${s.idSede}}">
-										Editar </a></td><td><a type="button" class="btn btn-danger" 
-								th:href="@{/sedes/eliminar?id=}+${s.idSede}">
-										Eliminar </a></td>
+									th:href="@{'/sedes/irmodificar/'+${s.idSede}}"> Editar </a></td>
+								<td><a type="button" class="btn btn-danger"
+									th:href="@{/sedes/eliminar?id=}+${s.idSede}"> Eliminar </a></td>
 
 							</tr>
 						</tbody>
@@ -41,6 +44,47 @@
 			<div th:if="${listaSedes == null or listaSedes.empty}">
 				<h4>No hay sedes registradas</h4>
 			</div>
+
+			<!-- Modal -->
+			<div class="modal fade" id="modalRegistro" tabindex="-1"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<!----- Header ------>
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"
+								aria-label="Close"></button>
+						</div>		
+						<form th:action="@{/sedes/guardar}" th:object="${s}" method="post">
+												<!----- Body ------>
+							<div class="modal-body">
+								<h2 class="form-label text-center">Registrar Sede</h2>
+								<input class="form-control" type="hidden" th:field="*{idSede}" />
+								<div class="col-sm-12">
+									<label class="col-form-label">Nombre: </label> <input
+										class="form-control" type="text" th:field="*{nombre}" />
+								</div>
+								<div class="col-sm-12">
+									<label class="form-label">Dirección: </label> <input
+										class="form-control" type="text" th:field="*{direccion}" />
+								</div>
+								<div class="col-sm-12">
+									<label class="form-label">Distrito: </label> <input
+										class="form-control" type="text" th:field="*{distrito}" />
+								</div>
+							</div>
+							<!----- Footer ------>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-bs-dismiss="modal">Cancelar</button>
+								<input type="submit" value="Registrar" class="btn btn-primary" />
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
 		</div>
 	</div>
 	<footer th:replace="master/master :: resource"></footer>

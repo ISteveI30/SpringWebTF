@@ -15,5 +15,5 @@ public interface AcademiaService {
 
 	public void update(Academia academia);
 	
-	Optional<Academia> findCarrera(int idAcademia);
+	Optional<Academia> findAcademia(int idAcademia);
 }

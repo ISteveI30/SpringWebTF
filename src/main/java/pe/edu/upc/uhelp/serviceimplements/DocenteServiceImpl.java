@@ -32,7 +32,7 @@ public class DocenteServiceImpl implements IDocenteService{
 	}
 
 	@Override
-	public Optional<Docente> findModalidad(int idDocente) {
+	public Optional<Docente> findDocente(int idDocente) {
 		return docenteRepository.findById(idDocente);
 	}
 

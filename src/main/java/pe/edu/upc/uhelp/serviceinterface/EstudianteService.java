@@ -15,5 +15,5 @@ public interface EstudianteService {
 
 	public void update(Estudiante estudiante);
 	
-	Optional<Estudiante> findCarrera(int idEstudiante);
+	Optional<Estudiante> findEstudiante(int idEstudiante);
 }

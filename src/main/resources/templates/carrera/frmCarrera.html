@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Carreras</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+
+	<div class="row  mx-auto mt-3 container">
+		<h3>Listado de Carreras</h3>
+		<div class="col-8">
+			<div th:if="${lstcarreras != null and !lstcarreras.empty}">
+				<div class="table-responsive">
+					<table class="table table-success table-striped">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Nombre</th>
+								<th>Modalidad de Carrera</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="p:${lstcarreras}">
+								<td th:text="${p.idCarrera}"></td>
+								<td th:text="${p.nombre}"></td>
+								<td th:text="${p.modalidad}"></td>
+								<td><a type="button" class="btn btn-primary"
+									th:href="@{'/carreras/editar/'+${p.idCarrera}}">Editar</a>
+								<td><a type="button" class="btn btn-danger"
+									th:href="@{'/carreras/eliminar/'+${p.idCarrera}}">Eliminar</a>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div th:if="${lstcarreras == null or lstcarreras.empty}">
+				<h4>No hay carreras registradas</h4>
+			</div>
+		</div>
+		<div class="col-4">
+			<div class="container border border-primary">
+				<h2 class="form-label text-center">Registrar Carrera</h2>
+				<form th:action="@{/carreras/guardar}" th:object="${carrera}"
+					method="post">
+					<input class="form-control" type="hidden" th:field="*{idCarrera}" />
+					<div class="col-sm-12">
+						<label class="form-label">Carrera: </label> <input
+							class="form-control" type="text" th:field="*{nombre}" />
+					</div>
+					<div class="col-sm-12">
+						<label class="form-label">Modalidad de Carrera: </label> <select
+							name="selectModalidad" class="form-control"
+							th:field="*{modalidad}">
+							<option th:value="Pregrado" selected>Pregrado</option>
+							<option th:value="EPE">EPE</option>
+						</select>
+					</div>
+					<div class="col-3 mt-5 border mx-auto">
+						<input class="btn btn-primary" type="submit" value="Registrar" />
+					</div>
+				</form>
+
+			</div>
+		</div>
+
+	</div>
+
+	<footer th:replace="master/master :: resource"></footer>
+</body>
+</html>

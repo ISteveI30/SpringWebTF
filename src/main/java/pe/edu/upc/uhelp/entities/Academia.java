@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Academias")
+@Table(name = "academias")
 public class Academia {
 
 	@Id
