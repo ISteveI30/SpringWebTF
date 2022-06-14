@@ -18,16 +18,15 @@ public class Promocion{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idPromocion;
 	
-	@NotEmpty(message = "Ingrese el titulo de la Promocion*")
+	//@NotEmpty(message = "Ingrese el titulo de la Promocion*")
 	@Column(name = "titulo", nullable = false, length = 30)
 	private String titulo;
 	
-<<<<<<< HEAD
+
+	
+
+	//@NotEmpty(message = "Ingrese la descripción de la Promocion*")
 	@Column(name = "descripcion", nullable = false, length = 200)
-=======
-	@NotEmpty(message = "Ingrese la descripción de la Promocion*")
-	@Column(name = "descripcion", nullable = false, length = 30)
->>>>>>> e491d57411583be1bb7b3dc39e8c48a4f5e9f8c9
 	private String descripcion;
 	
 	@ManyToOne
