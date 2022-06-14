@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "estudiantes")
@@ -17,12 +18,14 @@ public class Estudiante {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idEstudiante;
 	
+	@NotEmpty(message= "Debe ingresar su nombre de Estudiante*")
 	@Column(name = "nombre", nullable = false, length = 50)
 	private String nombre;
 	
+	@NotEmpty(message= "Debe ingresar su apellido de Estudiante*")
 	@Column(name = "apellido", nullable = false, length = 50)
 	private String apellido;
-	
+	@NotEmpty(message= "Debe ingresar un correo electrónico*")
 	@Column(name = "correo", nullable = false, length = 50)
 	private String correo;
 	
