@@ -18,25 +18,24 @@ public class Docente {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idDocente;
 	
-	@NotEmpty(message = "Ingrese el nombre del Docente*")
+	//@NotEmpty(message = "Ingrese el nombre del Docente*")
 	@Column(name = "nombre", nullable = false, length = 30)
 	private String nombre;
 	
-	@NotEmpty(message = "Ingrese el apellido del Docente*")
+	//@NotEmpty(message = "Ingrese el apellido del Docente*")
 	@Column(name = "apellido", nullable = false, length = 30)
 	private String apellido;
 	
-	@NotEmpty(message = "Ingrese el DNI del Docente*")
+	//@NotEmpty(message = "Ingrese el DNI del Docente*")
 	@Column(name = "dni", nullable = false, length = 30)
 	private String dni;
 	
-<<<<<<< HEAD
+
+
+	//@Min(1)
+	//@Max(5)
 	@Column(name = "puntaje", nullable = true)
-=======
-	@Min(1)
-	@Max(5)
-	@Column(name = "puntaje", nullable = false)
->>>>>>> e491d57411583be1bb7b3dc39e8c48a4f5e9f8c9
+
 	private int puntaje;
 
 	/*@ManyToOne
