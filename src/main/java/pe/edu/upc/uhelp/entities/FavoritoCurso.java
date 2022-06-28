@@ -27,6 +27,11 @@ public class FavoritoCurso {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public FavoritoCurso(Curso curso) {
+		super();
+		this.curso=curso;
+		// TODO Auto-generated constructor stub
+	}
 
 	public FavoritoCurso(int id, Curso curso/*, Estudiante estudiante*/) {
 		super();

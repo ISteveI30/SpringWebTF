@@ -68,10 +68,10 @@
 							th:href="@{/cursos/listar}">Cursos</a></li>
 
 						<li sec:authorize="hasRole('ROLE_STUDENT')"><a
-							class="nav-link active" aria-current="page" href="#">Promociones</a></li>
+							class="nav-link active" aria-current="page" th:href="@{/estudiantes/promocionEstudiante}">Promociones</a></li>
 
 						<li sec:authorize="hasRole('ROLE_STUDENT')"><a
-							class="nav-link active" aria-current="page" href="#">Favoritos</a></li>
+							class="nav-link active" aria-current="page" th:href="@{/estudiantes/favorito}">Favoritos</a></li>
 
 						<li sec:authorize="hasRole('ROLE_ACADEMY')"><a
 							class="nav-link active" aria-current="page"

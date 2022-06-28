@@ -1,14 +1,20 @@
 package pe.edu.upc.uhelp.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,13 +34,17 @@ public class Orden {
 	@Column(name = "fechaCompra", nullable = false)
 	private Date fechaCompra;
 	
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumn(name="idAcademia")
-	private Academia academia;
+	private Academia academia;*/
 	
 	@ManyToOne
 	@JoinColumn(name="idEstudiante")
 	private Estudiante estudiante;
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "orden_id")
+	private List<DetalleOrden> ordenDetalle;
 	
 	@ManyToOne
 	@JoinColumn(name="idPago")
@@ -42,15 +52,11 @@ public class Orden {
 
 	public Orden() {
 		super();
+		this.ordenDetalle = new ArrayList<>();
 	}
-
-	public Orden(int idOrden, Date fechaCompra, Academia academia, Estudiante estudiante, Pago pago) {
-		super();
-		this.idOrden = idOrden;
-		this.fechaCompra = fechaCompra;
-		this.academia = academia;
-		this.estudiante = estudiante;
-		this.pago = pago;
+	@PrePersist
+	public void prePersist() {
+		fechaCompra=new Date();
 	}
 
 	public int getIdOrden() {
@@ -69,14 +75,6 @@ public class Orden {
 		this.fechaCompra = fechaCompra;
 	}
 
-	public Academia getAcademia() {
-		return academia;
-	}
-
-	public void setAcademia(Academia academia) {
-		this.academia = academia;
-	}
-
 	public Estudiante getEstudiante() {
 		return estudiante;
 	}
@@ -91,6 +89,14 @@ public class Orden {
 
 	public void setPago(Pago pago) {
 		this.pago = pago;
+	}
+
+	public List<DetalleOrden> getOrdenDetalle() {
+		return ordenDetalle;
+	}
+
+	public void setOrdenDetalle(List<DetalleOrden> ordenDetalle) {
+		this.ordenDetalle = ordenDetalle;
 	}
 	
 }

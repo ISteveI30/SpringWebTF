@@ -34,6 +34,7 @@ public class PromocionController {
 		if(binRes.hasErrors()) {
 			return "promocion/frmPromocion";	
 		}else {
+			System.out.println("dato guardado"+promocion.getTitulo());
 			promService.insert(promocion);
 			model.addAttribute("mensaje","Se registró de manera correcta!!");
 			model.addAttribute("lstPromocion",promService.list());
@@ -43,10 +44,16 @@ public class PromocionController {
 	@GetMapping("/listar")
 	public String listPromocion(Model model) {
 		try {
-			model.addAttribute("p",new Promocion());
+			model.addAttribute("promocion",new Promocion());
+			model.addAttribute("lstdocentes",docService.list());
+			model.addAttribute("lstcursos",cursoService.list());				
 			model.addAttribute("lstPromocion",promService.list());
-			model.addAttribute("lstDocente",docService.list());
-			model.addAttribute("lstCursos",cursoService.list());
+			/*if(docService.list().isEmpty()) {
+				System.out.println("La lista esta vacia");
+				for (Docente element : docService.list()) {
+					
+				}
+			}*/
 		} catch (Exception e) {
 			model.addAttribute("error",e.getMessage());
 		}
@@ -79,9 +86,9 @@ public class PromocionController {
 	@PostMapping("/modificar")
 	public String updatePromocion(Promocion promocion,Model model) {
 		promService.update(promocion);
-		model.addAttribute("lstPromocion",promService.list());
 		model.addAttribute("lstDocente",docService.list());
 		model.addAttribute("lstCursos",cursoService.list());
+		model.addAttribute("lstPromocion",promService.list());
 			return "redirect:/promociones/listar";
 	}
 	

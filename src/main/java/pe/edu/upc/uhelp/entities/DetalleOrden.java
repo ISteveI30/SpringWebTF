@@ -17,31 +17,19 @@ public class DetalleOrden {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idDetalle;
 	
-	@Column(name = "precio", nullable = false)
-	private double precio;
-	
-	@Column(name = "descuento", nullable = false)
-	private double descuento;
-	
+	@Column(name = "cantidad")
+	private int cantidad;
+
 	@ManyToOne
-	@JoinColumn(name="idOrden")
-	private Orden orden;
-	
-	@ManyToOne
-	@JoinColumn(name="idCurso")
+	@JoinColumn(name="idCurso", nullable = true)
 	private Curso curso;
+	
+	@ManyToOne
+	@JoinColumn(name="idPromocion", nullable = true)
+	private Promocion promocion;
 	
 	public DetalleOrden() {
 		super();
-	}
-
-	public DetalleOrden(int idDetalle, double precio, double descuento, Orden orden, Curso curso) {
-		super();
-		this.idDetalle = idDetalle;
-		this.precio = precio;
-		this.descuento = descuento;
-		this.orden = orden;
-		this.curso = curso;
 	}
 
 	public int getIdDetalle() {
@@ -52,28 +40,12 @@ public class DetalleOrden {
 		this.idDetalle = idDetalle;
 	}
 
-	public double getPrecio() {
-		return precio;
+	public int getCantidad() {
+		return cantidad;
 	}
 
-	public void setPrecio(double precio) {
-		this.precio = precio;
-	}
-
-	public double getDescuento() {
-		return descuento;
-	}
-
-	public void setDescuento(double descuento) {
-		this.descuento = descuento;
-	}
-
-	public Orden getOrden() {
-		return orden;
-	}
-
-	public void setOrden(Orden orden) {
-		this.orden = orden;
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
 	}
 
 	public Curso getCurso() {
@@ -84,4 +56,11 @@ public class DetalleOrden {
 		this.curso = curso;
 	}
 
+	public Promocion getPromocion() {
+		return promocion;
+	}
+
+	public void setPromocion(Promocion promocion) {
+		this.promocion = promocion;
+	}
 }

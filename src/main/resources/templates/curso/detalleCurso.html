@@ -8,47 +8,36 @@
 </head>
 <body>
 	<header th:replace="master/master :: header"></header>
+	<div th:each="c : ${lstcursos}" class="list-group-item bg-dark">
+		<div class="container mt-3">
+			<div class="card" style="width: 40rem;">
+				<div class="row g-0">
+					<div class="col-4">
+						<img src="/img/abrazo.jpg" class="card-img-top"
+							alt="foto referencia">
+					</div>
 
-	<div class="container mt-3">
-		<div class="card" style="width: 40rem;">
-			<div class="row g-0">
-				<div class="col-4">
-					<img src="/img/abrazo.jpg" class="card-img-top"
-						alt="foto referencia">
-				</div>
 					<div class="col-md-8">
-					<form th:action="@{/estudiantesC/guardar}" th:object="${curso}">
-					<input class="form-control" type="hidden" th:field="*{idCurso}"/>
-						<div class="card-body" >
-						<div >
-							<label>Curso: </label> <input type="text" disabled th:field="*{nombre}" />
-						</div>
-						<div>
-							<label">Inicio de Curso: </label> <input
-								disabled type="date" th:field="*{inicio}" />
-						</div>
-						<div>
-							<label >Culminación de Curso: </label> <input
-								type="date" disabled th:field="*{culminacion}" />
-						</div>
-						<div class="col-sm-12">
-							<label class="form-label">Precio: </label> <input
-								class="form-control" type="text" th:field="*{precio}" />
-						</div>
-						<div class="col-sm-12">
-							<label class="form-label">Vacantes: </label> <input
-								class="form-control" type="text" th:field="*{vacantes}" />
-						</div>
-						
-							<h5 class="card-title" th:text="${nombre}>Card title</h5>
-							<p class="card-text">Some quick example text to build on the
-								card title and make up the bulk of the card's content.</p>
-
+						<div class="card-body">
+							<h5 class="card-title" th:text="'Curso: '+${c.nombre}"></h5>
+							<h6 class="card-text"
+								th:text="'Inicio: '+${#dates.format(c.inicio,'dd/MM/yyyy')}"></h6>
+							<p class="card-text"
+								th:text="'Culminación: '+${#dates.format(c.culminacion,'dd/MM/yyyy')}"></p>
+							<p class="card-text"
+								th:text="'Modalidad: '+${c.modalidad.tipo}+' - '+${c.modalidad.formato}"></p>
+							<p class="card-text" th:text="'Vacantes: '+${c.vacantes}"></p>
+							<div class="d-flex justify-content-end">
+								<small class="text-muted" th:text="'S/.'+*{c.precio}+'0'"></small>
+							</div>
+							<div class="d-flex justify-content-end">
+								<small class="text-muted" th:text="*{c.carrera.nombre}"></small>
+							</div>
 						</div>
 						<div class="card-footer">
-							<a href="#" class="btn btn-success">Agregar a Favoritos</a>
+							<a href="#" class="btn btn-danger">Eliminar</a>
 						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 		</div>
