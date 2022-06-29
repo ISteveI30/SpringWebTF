@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="Promociones")
@@ -22,9 +21,6 @@ public class Promocion{
 	@Column(name = "titulo", nullable = false, length = 30)
 	private String titulo;
 	
-
-	
-
 	//@NotEmpty(message = "Ingrese la descripción de la Promocion*")
 	@Column(name = "descripcion", nullable = false, length = 200)
 	private String descripcion;
@@ -44,17 +40,6 @@ public class Promocion{
 	public Promocion() {
 		super();
 	}
-
-	/*public Promocion(int idPromocion, String titulo, String descripcion, Docente docente, Academia academia,
-			Curso curso) {
-		super();
-		this.idPromocion = idPromocion;
-		this.titulo = titulo;
-		this.descripcion = descripcion;
-		this.docente = docente;
-		this.academia = academia;
-		this.curso = curso;
-	}*/
 
 	public int getIdPromocion() {
 		return idPromocion;
@@ -88,14 +73,6 @@ public class Promocion{
 		this.docente = docente;
 	}
 
-	/*public Academia getAcademia() {
-		return academia;
-	}
-
-	public void setAcademia(Academia academia) {
-		this.academia = academia;
-	}*/
-
 	public Curso getCurso() {
 		return curso;
 	}
@@ -103,5 +80,4 @@ public class Promocion{
 	public void setCurso(Curso curso) {
 		this.curso = curso;
 	}
-	
 }

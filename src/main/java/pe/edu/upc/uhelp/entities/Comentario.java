@@ -14,10 +14,10 @@ public class Comentario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-
-
-	@Column(name = "descripcion", nullable = false, length = 200)
+	
+	
 	@NotEmpty(message= "Debe ingresar el contenido de su comentario*")
+	@Column(name = "descripcion", nullable = false, length = 200)	
 	private String descripcion;
 	
 	/*@ManyToOne

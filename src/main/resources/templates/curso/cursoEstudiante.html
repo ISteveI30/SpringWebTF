@@ -15,19 +15,25 @@
 		<div class="container mt-3">
 			<div class="row">
 				<div class="col g-3" th:each="c : ${lstcursos}">
-					<div class="card" style="width: 22rem">
-						<img src="/img/abrazo.jpg" class="card-img-top" alt="..."
-							width="100%" height="225">
-						<div class="card-body">
-							<h5 class="card-text" th:text="*{c.nombre}"></h5>
-							<p class="card-text"
-								th:text="'Modalidad: '+${c.modalidad.tipo}+' - '+${c.modalidad.formato}"></p>
+					
+						<div class="card" style="width: 22rem">
+							<img src="/img/abrazo.jpg" class="card-img-top" alt="..."
+								width="100%" height="225">
+							<div class="card-body">
+								<h5 class="card-text" th:text="*{c.nombre}"></h5>
+								<p class="card-text"
+									th:text="'Modalidad: '+${c.modalidad.tipo}+' - '+${c.modalidad.formato}"></p>
 
-							<p class="text-muted text-end" th:text="'S/.'+*{c.precio}+'0'"></p>
-							<p class="text-muted text-end" th:text="*{c.carrera.nombre}"></p>
-							<a type="button" class="btn btn-primary" th:href="@{'/estudiantes/view/'+${c.idCurso}}">ver mas</a>
+								<p class="text-muted text-end" th:text="'S/.'+*{c.precio}+'0'"></p>
+								<p class="text-muted text-end" th:text="*{c.carrera.nombre}"></p>
+								<a type="button" class="btn btn-primary"
+									th:href="@{'/estudiantes/agregarC/'+${c.idCurso}}">Agregar a Favorito</a>
+									<a type="button" class="btn btn-warning"
+									th:href="@{'/compras/detalle/'+${c.idCurso}}">Ver detalle</a>
+									
+							</div>
 						</div>
-					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -46,7 +52,7 @@
 									<div class="card-cuerpo">
 										<h5 class="card-title">Física III</h5>
 										<h6 class="card-subtitle mb-2 text-muted">Ing de sistemas
-											</h6>
+										</h6>
 
 										<p class="text-muted text-end">S/. 22.00</p>
 										<div class="container m-auto">
@@ -61,7 +67,7 @@
 									<div class="card-cuerpo">
 										<h5 class="card-title">Desing Thinking</h5>
 										<h6 class="card-subtitle mb-2 text-muted">Administración
-											</h6>
+										</h6>
 
 										<p class="text-muted text-end">S/. 14.00</p>
 										<div class="container m-auto">

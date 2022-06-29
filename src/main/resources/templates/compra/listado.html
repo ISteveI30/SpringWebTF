@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Modalidad</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="row  mx-auto mt-3 container">
+		<h3>Listado de Compras</h3>
+		<div class="col-8">
+			<div >
+				<div class="table-responsive">
+					<table class="table table-success table-striped">
+						<thead>
+							<tr>
+								<th>Curso</th>
+								<th>Precio</th>
+								<th>Vacantes</th>
+								<th>Total</th>
+								<th>Actions</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="c : ${listOrden}">
+								<td th:text="${c.nombre}"></td>
+								<td th:text="${c.precio}"></td>
+								<td th:text="${c.cantidad}"></td>
+								<td th:text="${c.total}"></td>
+								<td><a type="button" th:href="@{'/compras/delete/'+${c.curso.idCurso}}" class="btn btn-danger"
+									>Eliminar</a>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div >
+				<h4>.</h4>
+			</div>
+		</div>
+
+		<div class="col-4">
+			<div class="container border border-primary">
+				<h2 class="form-label text-center">Sub Total</h2>
+				<h5 class="form-label text-center" th:text="${orden.total}"></h5>
+				<div class="col-3 mt-5 border mx-auto">
+					
+					<a type="button" th:href="@{/compras/ordenes}" class="btn btn-danger"
+									>Ver Ordenes</a>
+				</div>
+				
+
+			</div>
+		</div>
+	</div>
+	<footer th:replace="master/master :: resource"></footer>
+</body>
+</html>

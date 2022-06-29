@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <title>Update Curso</title>
@@ -15,49 +15,31 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	<div class="container mt-3 row mx-auto">
 		<h2 class="text-center">Actualizar docente</h2>
 		<div class="container text-white col-5 rounded p-5 fondo">
-			<form th:action="@{/cursos/modificar}" th:object="${c}"
-				method="post">
+			<form th:action="@{/promociones/modificar}" th:object="${p}" method="post">
+				<input class="form-control" type="hidden" th:field="*{idPromocion}" />
 				<div class="col-sm-12">
-					<input class="form-control" type="hidden" th:field="*{idCurso}" />
+					<label class="form-label">Titulo: </label> <input
+						class="form-control" type="text" th:field="*{titulo}" />
 				</div>
 				<div class="col-sm-12">
-					<label class="form-label">Curso: </label> <input
-						class="form-control" type="text" th:field="*{nombre}" />
+					<label class="form-label">Descripción: </label> <input
+						class="form-control" type="text" th:field="*{descripcion}" />
 				</div>
 				<div class="col-sm-12">
-					<label class="form-label">Inicio de Curso: </label> <input
-						class="form-control" type="date" th:field="*{inicio}" />
-				</div>
-				<div class="col-sm-12">
-					<label class="form-label">Culminación de Curso: </label> <input
-						class="form-control" type="date" th:field="*{culminacion}" />
-				</div>
-				<div class="col-sm-12">
-					<label class="form-label">Precio: </label> <input
-						class="form-control" type="text" th:field="*{precio}" />
-				</div>
-				<div class="col-sm-12">
-					<label class="form-label">Vacantes: </label> <input
-						class="form-control" type="text" th:field="*{vacantes}" />
-				</div>
-				<div class="col-sm-12">
-					<label class="form-label">Modalidad: </label> <select
-						name="selectModalidad" class="form-control" 
-						th:field="*{modalidad.idModalidad}">
-						<option th:each="m:${lstmodalidades}" 
-							th:value="${m.idModalidad}"
-							th:text="${m.tipo}+' - '+${m.formato}"
-							th:selected="(${m.idModalidad}==*{modalidad.idModalidad})"></option>
+					<label class="form-label">Docente: </label> <select
+						class="form-control" name="selectPerson"
+						th:field="*{docente.idDocente}">
+						<option th:each="d:${lstDocente}" th:value="${d.idDocente}"
+							th:text="${d.nombre}+' '+${d.apellido}"
+							th:selected="(${d.idDocente}==*{docente.idDocente})"></option>
 					</select>
 				</div>
 				<div class="col-sm-12">
-					<label class="form-label">Carrera: </label> <select
-						name="selectPerson" class="form-control"
-						th:field="*{carrera.idCarrera}">
-						<option th:each="c:${lstcarreras}"
-							th:value="${c.idCarrera}"
-							th:text="${c.modalidad}+' - '+${c.nombre}"
-							th:selected="(${c.idCarrera}==*{carrera.idCarrera})"></option>
+					<label class="form-label">Curso: </label> <select
+						class="form-control" name="selectCurso"
+						th:field="*{curso.idCurso}">
+						<option th:each="c:${lstCursos}" th:value="${c.idCurso}"
+							th:text="${c.nombre}"></option>
 					</select>
 				</div>
 				<div class="col-sm-12 mt-4  row">
