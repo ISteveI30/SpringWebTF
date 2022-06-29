@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Modalidad</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="row  mx-auto mt-3 container">
+		<h3>Listado de Compras</h3>
+		<div class="col-8">
+			<div >
+				<div class="table-responsive">
+					<table class="table table-success table-striped">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Formato</th>
+								<th>Tipo</th>
+								<th>Duración</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr >
+								<td ></td>
+								<td ></td>
+								<td ></td>
+								<td ></td>
+								<td><a type="button" class="btn btn-primary"
+									>Editar</a>
+								<td><a type="button" class="btn btn-danger"
+									>Eliminar</a>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div >
+				<h4>No hay modalidades registradas</h4>
+			</div>
+		</div>
+
+		<div class="col-4">
+			<div class="container border border-primary">
+				<h2 class="form-label text-center">Registrar Modalidad</h2>
+				<form >
+					<input class="form-control" type="hidden" />
+					<div class="col-sm-12">
+						<label class="form-label">Formato: </label> <select
+							name="selectModalidad" class="form-control">
+							<option th:value="Presencial" selected>Presencial</option>
+							<option th:value="Virtual">Virtual</option>
+						</select>
+					</div>
+					<div class="col-sm-12">
+						<label class="form-label">Tipo: </label> <input
+							class="form-control" type="text" />
+					</div>
+					<div class="col-sm-12">
+						<label class="form-label">Duracion: </label> <input
+							class="form-control" type="text" />
+					</div>
+					<div class="col-3 mt-5 border mx-auto">
+						<input class="btn btn-primary" type="submit" value="Registrar" />
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+	<footer th:replace="master/master :: resource"></footer>
+</body>
+</html>

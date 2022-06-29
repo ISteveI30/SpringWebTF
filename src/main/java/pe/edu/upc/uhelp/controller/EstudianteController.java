@@ -89,7 +89,6 @@ public class EstudianteController {
 		model.addAttribute("lista",favDocService.list());
 		return "favorito/favorito";
 	}
-	
 	/*
 	 * @RequestMapping("/view/{id}") public String viewCurso(@PathVariable("id") int
 	 * id, Model model) { try { Optional<Curso> curso = cursoService.findCurso(id);
