@@ -33,8 +33,8 @@ public class Docente {
 
 
 
-	@Min(1)
-	@Max(5)
+	//@Min(1)
+	//@Max(5)
 	@Column(name = "puntaje", nullable = true)
 	private int puntaje;
 
