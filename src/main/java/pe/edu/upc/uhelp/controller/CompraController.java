@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pe.edu.upc.uhelp.entities.Curso;
 import pe.edu.upc.uhelp.entities.DetalleOrden;
 import pe.edu.upc.uhelp.entities.Orden;
+import pe.edu.upc.uhelp.serviceinterface.EstudianteService;
 import pe.edu.upc.uhelp.serviceinterface.ICursoService;
 import pe.edu.upc.uhelp.serviceinterface.IDetalleOrdenService;
 import pe.edu.upc.uhelp.serviceinterface.IOrdenService;
@@ -29,6 +32,9 @@ public class CompraController {
 
 	@Autowired
 	private ICursoService cursoService;
+	
+	@Autowired
+	private EstudianteService estudianteService;
 
 	@Autowired
 	private IOrdenService ordenService;
@@ -112,10 +118,11 @@ public class CompraController {
 		return "compra/ordenes";
 	}
 	@GetMapping("/comprar")
-	public String comprarCurso( Model model) {
+	public String comprarCurso( Model model,HttpSession session) {
 		Date fechaCompra = new Date();
+		var cliente= estudianteService.findEstudiante(Integer.parseInt(session.getAttribute("idStudent").toString())).get();
 		orden.setFechaCompra(fechaCompra);
-		orden.setEstudiante(null);
+		orden.setEstudiante(cliente);
 		ordenService.insert(orden);
 		for (DetalleOrden detalleOrden : listOrden) {
 			detalleOrden.setOrden(orden);

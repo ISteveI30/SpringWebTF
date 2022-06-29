@@ -1,7 +1,13 @@
 package pe.edu.upc.uhelp.util;
 
+import pe.edu.upc.uhelp.entities.Estudiante;
+
 public class RegistroAux {
 
+	private Estudiante student;
+	
+	private int idAcademy;
+	
 	private String nombre;
 
 	private String apellido;
@@ -16,7 +22,7 @@ public class RegistroAux {
 
 	private String password;
 
-	private String nickname;
+	//private String nickname;
 
 	/*public RegistroAux() {
 		super();
@@ -83,12 +89,27 @@ public class RegistroAux {
 		this.password = password;
 	}
 
-	public String getNickname() {
+	public int getIdAcademy() {
+		return idAcademy;
+	}
+
+	public void setIdAcademy(int idAcademy) {
+		this.idAcademy = idAcademy;
+	}
+
+	public Estudiante getStudent() {
+		return student;
+	}
+
+	public void setStudent(Estudiante student) {
+		this.student = student;
+	}
+
+	/*public String getNickname() {
 		return nickname;
 	}
 
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
-	}
-
+	}*/
 }

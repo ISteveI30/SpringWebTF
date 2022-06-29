@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Perfil</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+
+
+	<div class="container">
+		<div class="main-body">
+
+
+			<div class="row gutters-sm">
+				<div class="col-md-4 mb-3">
+					<div class="card">
+						<div class="card-body">
+							<div class="d-flex flex-column align-items-center text-center">
+								<img src="/img/abrazo.jpg"
+									alt="Admin" class="rounded-circle" width="150">
+								<div class="mt-3">
+									<h4 th:text="*{nombre}"></h4>
+									<p class="text-secondary mb-1"></p>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="card mt-3"></div>
+				</div>
+
+				<div class="col-md-8">
+					<div class="card mb-3">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Nombre</h6>
+								</div>
+								<div class="col-sm-9 text-secondary" th:text="*{nombre}"></div>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Apellido</h6>
+								</div>
+								<div class="col-sm-9 text-secondary" th:text="*{apellido}"></div>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Correo</h6>
+								</div>
+								<div class="col-sm-9 text-secondary" th:text="*{correo}"></div>
+							</div>
+							<hr>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="master/master :: resource"></footer>
+
+</body>
+</html>

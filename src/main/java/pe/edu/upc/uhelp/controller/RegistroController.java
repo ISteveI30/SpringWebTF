@@ -58,7 +58,7 @@ public class RegistroController {
 		System.out.println("-------Datos del Objeto------");
 		System.out.println("apellido: "+aux.getApellido());
 		System.out.println("correo: "+aux.getCorreo());
-		System.out.println("nickname: "+aux.getNickname());
+		//System.out.println("nickname: "+aux.getNickname());
 		System.out.println("nombre: "+aux.getNombre());
 		System.out.println("password: "+aux.getPassword());
 		System.out.println("rol: "+aux.getRol());
