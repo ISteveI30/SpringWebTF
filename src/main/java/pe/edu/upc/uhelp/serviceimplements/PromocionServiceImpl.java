@@ -3,6 +3,7 @@ package pe.edu.upc.uhelp.serviceimplements;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pe.edu.upc.uhelp.entities.Promocion;
@@ -12,6 +13,7 @@ import pe.edu.upc.uhelp.serviceinterface.IPromocionService;
 @Service
 public class PromocionServiceImpl implements IPromocionService {
 
+	@Autowired
 	private IPromocionRepository promocionRepository;
 
 	@Override

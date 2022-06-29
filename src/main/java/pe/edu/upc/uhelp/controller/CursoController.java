@@ -18,6 +18,7 @@ import pe.edu.upc.uhelp.serviceinterface.ICarreraService;
 import pe.edu.upc.uhelp.serviceinterface.ICursoService;
 import pe.edu.upc.uhelp.serviceinterface.IModalidadService;
 
+/*aquí se añade las direcciones y vistas de cada método*/
 @Controller
 @RequestMapping("/cursos")
 public class CursoController {

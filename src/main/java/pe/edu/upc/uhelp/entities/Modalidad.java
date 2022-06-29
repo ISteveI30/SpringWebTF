@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/*entidad de la modalidad de cursos*/
 @Entity
 @Table(name="Modalidades")
 public class Modalidad {

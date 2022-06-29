@@ -31,14 +31,13 @@ public class DocenteController {
 			docService.insert(docente);
 			model.addAttribute("mensaje", "Se registró correctamente la modalidad!");
 			model.addAttribute("lstdocentes", docService.list());
-			return "redirect:/docentes/listar";
-		}
+			return "redirect:/docentes/listar";		}
 	}
 
 	@GetMapping("/listar")
 	public String listDocente(Model model) {
 		try {
-			model.addAttribute("d",new Docente());
+			model.addAttribute("docente",new Docente());
 			model.addAttribute("lstdocentes", docService.list());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());

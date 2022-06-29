@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/*entidad de los pagos*/
 @Entity
 @Table(name = "Pagos")
 public class Pago {

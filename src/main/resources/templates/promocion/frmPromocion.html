@@ -93,7 +93,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
-				<form th:action="@{/promociones/guardar}" th:object="${p}"
+				<form th:action="@{/promociones/guardar}" th:object="${promocion}"
 					method="post">
 					<!----- Body ------>
 					<div class="modal-body">
@@ -108,9 +108,9 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 						</div>
 						<div class="col-sm-12">
 							<label class="form-label">Docente: </label> <select
-								class="form-control" name="selectPerson"
+								class="form-control" 
 								th:field="*{docente.idDocente}">
-								<option th:each="d:${lstDocente}"
+								<option th:each="d : ${lstdocentes}"
 									th:value="${d.idDocente}"
 									th:text="${d.nombre}+' '+${d.apellido}"
 									th:selected="(${d.idDocente}==*{docente.idDocente})">
@@ -119,9 +119,9 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 						</div>
 						<div class="col-sm-12">
 							<label class="form-label">Curso: </label> <select
-								class="form-control" name="selectCurso"
+								class="form-control" 
 								th:field="*{curso.idCurso}">
-								<option th:each="c:${lstCursos}" 
+								<option th:each="c:${lstcursos}" 
 								th:value="${c.idCurso}"
 									th:text="${c.nombre}"
 									></option>

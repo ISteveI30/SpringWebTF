@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+/*entidad de la sede*/
+
 @Entity
 @Table(name = "Sedes")
 public class Sede {

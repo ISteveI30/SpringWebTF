@@ -16,7 +16,7 @@ import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
+/*Entidad de los cursos de la academia*/
 @Entity
 @Table(name = "Cursos")
 public class Curso {

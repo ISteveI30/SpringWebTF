@@ -32,8 +32,8 @@ public class Users implements Serializable {
 	@Column(name = "password", nullable = false, length = 200)
 	private String password;
 	
-	@Column(name = "nickname", nullable = false, length = 50)
-	private String nickname;
+	/*@Column(name = "nickname", nullable = false, length = 50)
+	private String nickname;*/
 
 	private Boolean enabled;
 
@@ -107,12 +107,12 @@ public class Users implements Serializable {
 	public void setRoles(List<Rol> roles) {
 		this.roles = roles;
 	}
-	public String getNickname() {
+	/*public String getNickname() {
 		return nickname;
 	}
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
-	}
+	}*/
 	public Boolean getEnabled() {
 		return enabled;
 	}

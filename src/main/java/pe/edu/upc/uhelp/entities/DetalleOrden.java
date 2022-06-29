@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,31 +18,31 @@ public class DetalleOrden {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idDetalle;
 	
-	@Column(name = "precio", nullable = false)
+	@Column(name = "cantidad")
+	private double cantidad;
+
+	@Column(name = "nombre")
+	private String nombre;
+	
+	@Column(name = "precio")
 	private double precio;
 	
-	@Column(name = "descuento", nullable = false)
-	private double descuento;
+	@Column(name = "total")
+	private double total;
 	
 	@ManyToOne
-	@JoinColumn(name="idOrden")
-	private Orden orden;
-	
-	@ManyToOne
-	@JoinColumn(name="idCurso")
+	@JoinColumn(name="idCurso", nullable = true)
 	private Curso curso;
+	
+	@ManyToOne
+	@JoinColumn(name="idPromocion", nullable = true)
+	private Promocion promocion;
+	
+	@OneToOne
+	private Orden orden;
 	
 	public DetalleOrden() {
 		super();
-	}
-
-	public DetalleOrden(int idDetalle, double precio, double descuento, Orden orden, Curso curso) {
-		super();
-		this.idDetalle = idDetalle;
-		this.precio = precio;
-		this.descuento = descuento;
-		this.orden = orden;
-		this.curso = curso;
 	}
 
 	public int getIdDetalle() {
@@ -52,6 +53,22 @@ public class DetalleOrden {
 		this.idDetalle = idDetalle;
 	}
 
+	public double getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(double cantidad) {
+		this.cantidad = cantidad;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	public double getPrecio() {
 		return precio;
 	}
@@ -60,20 +77,12 @@ public class DetalleOrden {
 		this.precio = precio;
 	}
 
-	public double getDescuento() {
-		return descuento;
+	public double getTotal() {
+		return total;
 	}
 
-	public void setDescuento(double descuento) {
-		this.descuento = descuento;
-	}
-
-	public Orden getOrden() {
-		return orden;
-	}
-
-	public void setOrden(Orden orden) {
-		this.orden = orden;
+	public void setTotal(double total) {
+		this.total = total;
 	}
 
 	public Curso getCurso() {
@@ -82,6 +91,22 @@ public class DetalleOrden {
 
 	public void setCurso(Curso curso) {
 		this.curso = curso;
+	}
+
+	public Promocion getPromocion() {
+		return promocion;
+	}
+
+	public void setPromocion(Promocion promocion) {
+		this.promocion = promocion;
+	}
+
+	public Orden getOrden() {
+		return orden;
+	}
+
+	public void setOrden(Orden orden) {
+		this.orden = orden;
 	}
 
 }

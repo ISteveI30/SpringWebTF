@@ -1,11 +1,15 @@
 package pe.edu.upc.uhelp.entities;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -31,6 +35,9 @@ public class Estudiante {
 	
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "estudiante")
 	private Users user;
+	
+	@OneToMany(mappedBy = "estudiante", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Orden> ordenes;
 
 	public Estudiante() {
 		super();
@@ -74,6 +81,14 @@ public class Estudiante {
 
 	public void setUser(Users user) {
 		this.user = user;
+	}
+
+	public List<Orden> getOrdenes() {
+		return ordenes;
+	}
+
+	public void setOrdenes(List<Orden> ordenes) {
+		this.ordenes = ordenes;
 	}
 
 }

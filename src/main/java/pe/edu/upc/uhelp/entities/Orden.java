@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,13 +29,19 @@ public class Orden {
 	@Column(name = "fechaCompra", nullable = false)
 	private Date fechaCompra;
 	
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumn(name="idAcademia")
-	private Academia academia;
+	private Academia academia;*/
 	
 	@ManyToOne
-	@JoinColumn(name="idEstudiante")
+	@JoinColumn(name="idEstudiante", nullable = true)
 	private Estudiante estudiante;
+	
+	@Column(name = "total")
+	private double total;
+	
+	@OneToOne(mappedBy = "orden")
+	private DetalleOrden ordenDetalle;
 	
 	@ManyToOne
 	@JoinColumn(name="idPago")
@@ -42,16 +49,12 @@ public class Orden {
 
 	public Orden() {
 		super();
+		//this.ordenDetalle = new ArrayList<>();
 	}
-
-	public Orden(int idOrden, Date fechaCompra, Academia academia, Estudiante estudiante, Pago pago) {
-		super();
-		this.idOrden = idOrden;
-		this.fechaCompra = fechaCompra;
-		this.academia = academia;
-		this.estudiante = estudiante;
-		this.pago = pago;
-	}
+	/*@PrePersist
+	public void prePersist() {
+		fechaCompra=new Date();
+	}*/
 
 	public int getIdOrden() {
 		return idOrden;
@@ -69,14 +72,6 @@ public class Orden {
 		this.fechaCompra = fechaCompra;
 	}
 
-	public Academia getAcademia() {
-		return academia;
-	}
-
-	public void setAcademia(Academia academia) {
-		this.academia = academia;
-	}
-
 	public Estudiante getEstudiante() {
 		return estudiante;
 	}
@@ -91,6 +86,26 @@ public class Orden {
 
 	public void setPago(Pago pago) {
 		this.pago = pago;
+	}
+
+	/*public List<DetalleOrden> getOrdenDetalle() {
+		return ordenDetalle;
+	}
+
+	public void setOrdenDetalle(List<DetalleOrden> ordenDetalle) {
+		this.ordenDetalle = ordenDetalle;
+	}*/
+	public double getTotal() {
+		return total;
+	}
+	public void setTotal(double total) {
+		this.total = total;
+	}
+	public DetalleOrden getOrdenDetalle() {
+		return ordenDetalle;
+	}
+	public void setOrdenDetalle(DetalleOrden ordenDetalle) {
+		this.ordenDetalle = ordenDetalle;
 	}
 	
 }

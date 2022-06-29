@@ -1,7 +1,5 @@
 package pe.edu.upc.uhelp.util;
 
-import pe.edu.upc.uhelp.entities.Sede;
-
 public class RegistroAux {
 
 	private String nombre;

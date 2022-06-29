@@ -81,7 +81,7 @@ public class RegistroController {
 		user.setAcademia(null);
 		user.setPassword(bcpe.encode(aux.getPassword()));
 		user.setUsername(aux.getCorreo());
-		user.setNickname(aux.getNickname());
+		//user.setNickname(aux.getNickname());
 		user.addRol("ROLE_STUDENT");
 		//rol.setUser(user);
 		estudianteService.insert(estudiante);
@@ -120,7 +120,7 @@ public class RegistroController {
 		user.setEstudiante(null);
 		user.setPassword(bcpe.encode(aux.getPassword()));
 		user.setUsername(aux.getCorreo());
-		user.setNickname(aux.getNickname());
+	//	user.setNickname(aux.getNickname());
 		user.addRol("ROLE_ACADEMY");
 		//rol.setUser(user);
 		academiaService.insert(academia);
