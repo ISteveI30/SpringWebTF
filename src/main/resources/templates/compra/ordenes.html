@@ -8,9 +8,9 @@
 <body>
 	<header th:replace="master/master :: header"></header>
 	<div class="row  mx-auto mt-3 container">
-		<h3>Listado de Compras</h3>
+		<h3>Detalle de Ordenes</h3>
 		<div class="col-8">
-			<div >
+			<div>
 				<div class="table-responsive">
 					<table class="table table-success table-striped">
 						<thead>
@@ -19,8 +19,7 @@
 								<th>Precio</th>
 								<th>Vacantes</th>
 								<th>Total</th>
-								<th>Actions</th>
-								
+
 							</tr>
 						</thead>
 						<tbody>
@@ -29,14 +28,12 @@
 								<td th:text="${c.precio}"></td>
 								<td th:text="${c.cantidad}"></td>
 								<td th:text="${c.total}"></td>
-								<td><a type="button" th:href="@{'/compras/delete/'+${c.curso.idCurso}}" class="btn btn-danger"
-									>Eliminar</a>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 			</div>
-			<div >
+			<div>
 				<h4>.</h4>
 			</div>
 		</div>
@@ -46,12 +43,9 @@
 				<h2 class="form-label text-center">Sub Total</h2>
 				<h5 class="form-label text-center" th:text="${orden.total}"></h5>
 				<div class="col-3 mt-5 border mx-auto">
-					
-					<a type="button" th:href="@{/compras/ordenes}" class="btn btn-danger"
-									>Ver Ordenes</a>
-				</div>
-				
 
+					<a th:href="@{/compras/comprar}" type="button" class="btn btn-danger">Confirmar Compra</a>
+				</div>
 			</div>
 		</div>
 	</div>

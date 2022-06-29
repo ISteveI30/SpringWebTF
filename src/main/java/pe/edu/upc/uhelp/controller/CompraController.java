@@ -1,6 +1,7 @@
 package pe.edu.upc.uhelp.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,8 @@ import pe.edu.upc.uhelp.entities.Curso;
 import pe.edu.upc.uhelp.entities.DetalleOrden;
 import pe.edu.upc.uhelp.entities.Orden;
 import pe.edu.upc.uhelp.serviceinterface.ICursoService;
+import pe.edu.upc.uhelp.serviceinterface.IDetalleOrdenService;
+import pe.edu.upc.uhelp.serviceinterface.IOrdenService;
 
 @Controller
 @RequestMapping("/compras")
@@ -27,6 +30,12 @@ public class CompraController {
 	@Autowired
 	private ICursoService cursoService;
 
+	@Autowired
+	private IOrdenService ordenService;
+	
+	@Autowired
+	private IDetalleOrdenService detalleService;
+	
 	List<DetalleOrden> listOrden = new ArrayList<DetalleOrden>();
 	Orden orden = new Orden();
 
@@ -56,7 +65,15 @@ public class CompraController {
 		detalleOrden.setPrecio(curso.getPrecio());
 		detalleOrden.setTotal(curso.getPrecio()*cantidad);
 		detalleOrden.setCurso(curso);
-		listOrden.add(detalleOrden);
+		
+		//validamos el carrito de compras
+		Integer idCurso=curso.getIdCurso();
+		boolean existe=listOrden.stream().anyMatch(e -> e.getCurso().getIdCurso()==idCurso);
+		
+		if(!existe) {			
+			listOrden.add(detalleOrden);
+		}
+		
 		total=listOrden.stream().mapToDouble(dt->dt.getTotal()).sum();
 		orden.setTotal(total);
 		model.addAttribute("listOrden",listOrden);
@@ -80,5 +97,35 @@ public class CompraController {
 		model.addAttribute("orden",orden);
 		return "compra/listado";
 	}
-	
+	@GetMapping("/carrito")
+	public String viewCarrito( Model model) {
+		
+		model.addAttribute("listOrden",listOrden);
+		model.addAttribute("orden",orden);
+		return "compra/listado";
+	}
+	@GetMapping("/ordenes")
+	public String vieResumen( Model model) {
+		
+		model.addAttribute("listOrden",listOrden);
+		model.addAttribute("orden",orden);
+		return "compra/ordenes";
+	}
+	@GetMapping("/comprar")
+	public String comprarCurso( Model model) {
+		Date fechaCompra = new Date();
+		orden.setFechaCompra(fechaCompra);
+		orden.setEstudiante(null);
+		ordenService.insert(orden);
+		for (DetalleOrden detalleOrden : listOrden) {
+			detalleOrden.setOrden(orden);
+			detalleService.insert(detalleOrden);
+		}
+		
+		orden= new Orden();
+		listOrden.clear();
+		model.addAttribute("listOrden",listOrden);
+		model.addAttribute("orden",orden);
+		return "redirect:/estudiantes/cursoEstudiante";
+	}
 }

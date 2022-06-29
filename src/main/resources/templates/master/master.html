@@ -72,6 +72,9 @@
 
 						<li sec:authorize="hasRole('ROLE_STUDENT')"><a
 							class="nav-link active" aria-current="page" th:href="@{/estudiantes/favorito}">Favoritos</a></li>
+							
+							<li sec:authorize="hasRole('ROLE_STUDENT')"><a
+							class="nav-link active" aria-current="page" th:href="@{/compras/carrito}">Carrito</a></li>
 
 						<li sec:authorize="hasRole('ROLE_ACADEMY')"><a
 							class="nav-link active" aria-current="page"

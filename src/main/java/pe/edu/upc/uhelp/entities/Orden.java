@@ -1,20 +1,15 @@
 package pe.edu.upc.uhelp.entities;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.PrePersist;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -45,9 +40,8 @@ public class Orden {
 	@Column(name = "total")
 	private double total;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "orden_id")
-	private List<DetalleOrden> ordenDetalle;
+	@OneToOne(mappedBy = "orden")
+	private DetalleOrden ordenDetalle;
 	
 	@ManyToOne
 	@JoinColumn(name="idPago")
@@ -55,12 +49,12 @@ public class Orden {
 
 	public Orden() {
 		super();
-		this.ordenDetalle = new ArrayList<>();
+		//this.ordenDetalle = new ArrayList<>();
 	}
-	@PrePersist
+	/*@PrePersist
 	public void prePersist() {
 		fechaCompra=new Date();
-	}
+	}*/
 
 	public int getIdOrden() {
 		return idOrden;
@@ -94,18 +88,24 @@ public class Orden {
 		this.pago = pago;
 	}
 
-	public List<DetalleOrden> getOrdenDetalle() {
+	/*public List<DetalleOrden> getOrdenDetalle() {
 		return ordenDetalle;
 	}
 
 	public void setOrdenDetalle(List<DetalleOrden> ordenDetalle) {
 		this.ordenDetalle = ordenDetalle;
-	}
+	}*/
 	public double getTotal() {
 		return total;
 	}
 	public void setTotal(double total) {
 		this.total = total;
+	}
+	public DetalleOrden getOrdenDetalle() {
+		return ordenDetalle;
+	}
+	public void setOrdenDetalle(DetalleOrden ordenDetalle) {
+		this.ordenDetalle = ordenDetalle;
 	}
 	
 }

@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -36,6 +37,9 @@ public class DetalleOrden {
 	@ManyToOne
 	@JoinColumn(name="idPromocion", nullable = true)
 	private Promocion promocion;
+	
+	@OneToOne
+	private Orden orden;
 	
 	public DetalleOrden() {
 		super();
@@ -95,6 +99,14 @@ public class DetalleOrden {
 
 	public void setPromocion(Promocion promocion) {
 		this.promocion = promocion;
+	}
+
+	public Orden getOrden() {
+		return orden;
+	}
+
+	public void setOrden(Orden orden) {
+		this.orden = orden;
 	}
 
 }
