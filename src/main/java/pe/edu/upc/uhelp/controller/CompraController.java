@@ -63,4 +63,22 @@ public class CompraController {
 		model.addAttribute("orden",orden);
 		return "compra/listado";
 	}
+	
+	@GetMapping("/delete/{id}")
+	public String deleteCurso(@PathVariable("id") int id, Model model) {
+		List<DetalleOrden> listAux = new ArrayList<DetalleOrden>();
+		for (DetalleOrden detalleOrden : listOrden) {
+			if(detalleOrden.getCurso().getIdCurso()!=id){
+				listAux.add(detalleOrden);
+			}
+		}
+		listOrden=listAux;
+		double total = 0;
+		total=listOrden.stream().mapToDouble(dt->dt.getTotal()).sum();
+		orden.setTotal(total);
+		model.addAttribute("listOrden",listOrden);
+		model.addAttribute("orden",orden);
+		return "compra/listado";
+	}
+	
 }
