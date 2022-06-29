@@ -18,8 +18,17 @@ public class DetalleOrden {
 	private int idDetalle;
 	
 	@Column(name = "cantidad")
-	private int cantidad;
+	private double cantidad;
 
+	@Column(name = "nombre")
+	private String nombre;
+	
+	@Column(name = "precio")
+	private double precio;
+	
+	@Column(name = "total")
+	private double total;
+	
 	@ManyToOne
 	@JoinColumn(name="idCurso", nullable = true)
 	private Curso curso;
@@ -40,12 +49,36 @@ public class DetalleOrden {
 		this.idDetalle = idDetalle;
 	}
 
-	public int getCantidad() {
+	public double getCantidad() {
 		return cantidad;
 	}
 
-	public void setCantidad(int cantidad) {
+	public void setCantidad(double cantidad) {
 		this.cantidad = cantidad;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
 	}
 
 	public Curso getCurso() {
@@ -63,4 +96,5 @@ public class DetalleOrden {
 	public void setPromocion(Promocion promocion) {
 		this.promocion = promocion;
 	}
+
 }

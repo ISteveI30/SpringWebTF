@@ -39,8 +39,11 @@ public class Orden {
 	private Academia academia;*/
 	
 	@ManyToOne
-	@JoinColumn(name="idEstudiante")
+	@JoinColumn(name="idEstudiante", nullable = true)
 	private Estudiante estudiante;
+	
+	@Column(name = "total")
+	private double total;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "orden_id")
@@ -97,6 +100,12 @@ public class Orden {
 
 	public void setOrdenDetalle(List<DetalleOrden> ordenDetalle) {
 		this.ordenDetalle = ordenDetalle;
+	}
+	public double getTotal() {
+		return total;
+	}
+	public void setTotal(double total) {
+		this.total = total;
 	}
 	
 }

@@ -15,20 +15,20 @@
 					<table class="table table-success table-striped">
 						<thead>
 							<tr>
-								<th>ID</th>
-								<th>Formato</th>
-								<th>Tipo</th>
-								<th>Duración</th>
+								<th>Curso</th>
+								<th>Precio</th>
+								<th>Reservaciones</th>
+								<th>Total</th>
+								<th>Actions</th>
+								
 							</tr>
 						</thead>
 						<tbody>
-							<tr >
-								<td ></td>
-								<td ></td>
-								<td ></td>
-								<td ></td>
-								<td><a type="button" class="btn btn-primary"
-									>Editar</a>
+							<tr th:each="c : ${listOrden}">
+								<td th:text="${c.nombre}"></td>
+								<td th:text="${c.precio}"></td>
+								<td th:text="${c.cantidad}"></td>
+								<td th:text="${c.total}"></td>
 								<td><a type="button" class="btn btn-danger"
 									>Eliminar</a>
 							</tr>
@@ -43,28 +43,12 @@
 
 		<div class="col-4">
 			<div class="container border border-primary">
-				<h2 class="form-label text-center">Registrar Modalidad</h2>
-				<form >
-					<input class="form-control" type="hidden" />
-					<div class="col-sm-12">
-						<label class="form-label">Formato: </label> <select
-							name="selectModalidad" class="form-control">
-							<option th:value="Presencial" selected>Presencial</option>
-							<option th:value="Virtual">Virtual</option>
-						</select>
-					</div>
-					<div class="col-sm-12">
-						<label class="form-label">Tipo: </label> <input
-							class="form-control" type="text" />
-					</div>
-					<div class="col-sm-12">
-						<label class="form-label">Duracion: </label> <input
-							class="form-control" type="text" />
-					</div>
-					<div class="col-3 mt-5 border mx-auto">
-						<input class="btn btn-primary" type="submit" value="Registrar" />
-					</div>
-				</form>
+				<h2 class="form-label text-center">Sub Total</h2>
+				<h5 class="form-label text-center" th:text="${orden.total}"></h5>
+				<div class="col-3 mt-5 border mx-auto">
+					<input class="btn btn-primary" type="submit" value="Registrar" />
+				</div>
+				
 
 			</div>
 		</div>
