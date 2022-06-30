@@ -32,6 +32,8 @@ public class CarreraController {
 		model.addAttribute("carrera",new Carrera());
 		return "carrera/registroCarrera";
 	}*/
+	
+	//validaciones
 	@PostMapping("/guardar")
 	public String saveCarrera(@Valid Carrera carrera,BindingResult binRes,Model model) {
 		if(binRes.hasErrors()) {
