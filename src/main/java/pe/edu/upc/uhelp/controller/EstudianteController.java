@@ -37,6 +37,7 @@ public class EstudianteController {
 	public String newCurso(Model model) {
 		// model.addAttribute("curso",new FavoritoCurso());
 		model.addAttribute("lstcursos", cursoService.list());
+		model.addAttribute("identificadorC", 1);
 		return "curso/cursoEstudiante";
 	}
 
@@ -54,8 +55,8 @@ public class EstudianteController {
 		var f = new FavoritoCurso();
 		f.setCurso(c.get());
 		favCurService.insert(f);
-		//model.addAttribute("mensaje", "Se registró de manera correcta!!");
-		//model.addAttribute("lstcursos", favCurService.list());
+		// model.addAttribute("mensaje", "Se registró de manera correcta!!");
+		// model.addAttribute("lstcursos", favCurService.list());
 		return "redirect:/estudiantes/favorito";
 
 	}
@@ -68,7 +69,7 @@ public class EstudianteController {
 			var f = new FavoritoDocente();
 			f.setDocente(d.get());
 			favDocService.insert(f);
-			//model.addAttribute("lista", favDocService.list());
+			// model.addAttribute("lista", favDocService.list());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 			System.out.println("Error al listar");
@@ -86,9 +87,10 @@ public class EstudianteController {
 	@GetMapping("/favorito")
 	public String favorito(Model model) {
 		model.addAttribute("lstcursos", favCurService.list());
-		model.addAttribute("lista",favDocService.list());
+		model.addAttribute("lista", favDocService.list());
 		return "favorito/favorito";
 	}
+
 	/*
 	 * @RequestMapping("/view/{id}") public String viewCurso(@PathVariable("id") int
 	 * id, Model model) { try { Optional<Curso> curso = cursoService.findCurso(id);
@@ -98,4 +100,29 @@ public class EstudianteController {
 	 * { model.addAttribute("error", e.getMessage()); } return "curso/detalleCurso";
 	 * }
 	 */
+	@RequestMapping("/eliminarC/{id}")
+	public String deleteCurso(@PathVariable("id") int id, Model model) {
+		try {
+			if (id > 0) {
+				favCurService.delete(id);
+				model.addAttribute("lstcursos", favCurService.list());
+			}
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
+		}
+		return "redirect:/estudiantes/favorito";
+	}
+
+	@RequestMapping("/eliminarD/{id}")
+	public String deleteDocente(@PathVariable("id") int id, Model model) {
+		try {
+			if (id > 0) {
+				favDocService.delete(id);
+				model.addAttribute("lista", favDocService.list());
+			}
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
+		}
+		return "redirect:/estudiantes/favorito";
+	}
 }

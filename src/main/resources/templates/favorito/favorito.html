@@ -28,7 +28,8 @@
 								th:text="'S/.'+*{c.curso.precio}+'0'"></p>
 							<p class="text-muted text-end"
 								th:text="*{c.curso.carrera.nombre}"></p>
-
+							<a type="button" class="btn btn-danger"
+								th:href="@{'/estudiantes/eliminarC/'+${c.id}}">Eliminar</a>
 						</div>
 					</div>
 				</div>
@@ -48,6 +49,8 @@
 							<p class="card-text" th:text="'DNI: '+${s.docente.dni}"></p>
 							<p class="text-muted text-end"
 								th:text="'Puntaje: '+*{s.docente.puntaje}"></p>
+								<a type="button" class="btn btn-danger"
+								th:href="@{'/estudiantes/eliminarD/'+${s.id}}">Eliminar</a>
 						</div>
 					</div>
 				</div>

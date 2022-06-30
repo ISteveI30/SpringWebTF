@@ -33,6 +33,8 @@ public class CompraController {
 
 	@Autowired
 	private ICursoService cursoService;
+	/*@Autowired
+	private IPromocionService promService;*/
 	
 	@Autowired
 	private EstudianteService estudianteService;
@@ -58,11 +60,21 @@ public class CompraController {
 		model.addAttribute("c", curso);
 		return "compra/detalleProducto";
 	}
-
+/*
+	@GetMapping("/detalleProm/{id}")
+	public String newDetallePromocion(@PathVariable("id") int id, Model model) {
+		var prom = new Promocion();
+		Optional<Promocion> objProm = promService.findPromocion(id);
+		prom = objProm.get();
+		model.addAttribute("p", prom);
+		return "compra/detallePromocion";
+	}*/
+	
 	// @Secured("ROLE_USER")
 	@PostMapping("/listado")
 	public String newListado(@RequestParam(name = "id", required = false) Integer id,
-			@RequestParam(name = "cantidad", required = false) Integer cantidad, Model model) {
+			@RequestParam(name = "cantidad", required = false) Integer cantidad,
+			Model model) {
 		var detalleOrden = new DetalleOrden();
 		var curso = new Curso();
 		double total = 0;
