@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="Docentes")
@@ -15,18 +16,17 @@ public class Docente {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idDocente;
 	
-	//@NotEmpty(message = "Ingrese el nombre del Docente*")
-	@Column(name = "nombre", nullable = false, length = 30)
+	@NotEmpty(message = "Ingrese el nombre del Docente")
+	@Column(name = "nombre", length = 30)
 	private String nombre;
 	
-	//@NotEmpty(message = "Ingrese el apellido del Docente*")
-	@Column(name = "apellido", nullable = false, length = 30)
+	@NotEmpty(message = "Ingrese el apellido del Docente")
+	@Column(name = "apellido", length = 30)
 	private String apellido;
 	
-	//@NotEmpty(message = "Ingrese el DNI del Docente*")
-	@Column(name = "dni", nullable = false, length = 30)
+	@NotEmpty(message = "Ingrese el DNI del Docente")
+	@Column(name = "dni", length = 30)
 	private String dni;
-	
 	
 	@Column(name = "puntaje", nullable = true)
 	private int puntaje;

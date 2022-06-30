@@ -52,6 +52,8 @@
 					<div class="col-sm-12">
 						<label class="form-label">Carrera: </label> <input
 							class="form-control" type="text" th:field="*{nombre}" />
+							<p th:if="${#fields.hasErrors('nombre')}"th:errorclass="error"
+								 th:errors="*{nombre}"></p>
 					</div>
 					<div class="col-sm-12">
 						<label class="form-label">Modalidad de Carrera: </label> <select

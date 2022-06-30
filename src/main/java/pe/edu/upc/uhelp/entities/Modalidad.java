@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="Modalidades")
@@ -14,13 +15,13 @@ public class Modalidad {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idModalidad;
-	
+	@NotEmpty(message = "Ingrese el nombre del Docente*")
 	@Column(name = "formato", nullable = false, length = 30)
 	private String formato;
-	
+	@NotEmpty(message = "Ingrese un tipo de modalidad*")
 	@Column(name = "tipo", nullable = false, length = 30)
 	private String tipo;
-	
+	@NotEmpty(message = "Ingrese una duración*")
 	@Column(name = "duracion", nullable = false, length = 30)
 	private String duracion;
 

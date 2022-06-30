@@ -105,14 +105,18 @@
 						<div class="col-sm-12">
 							<label class="col-form-label">Nombre: </label> <input
 								class="form-control" type="text" th:field="*{nombre}" />
+								<p th:if="${#fields.hasErrors('nombre')}">Invalid Age</p>
 						</div>
 						<div class="col-sm-12">
 							<label class="col-form-label">Apellido: </label> <input
-								class="form-control" type="text" th:field="*{apellido}" />
+								class="form-control" type="text" th:field="*{apellido}" id="apellido" />
+								<p th:if="${#fields.hasErrors('apellido')}"th:errorclass="error"
+								 th:errors="*{apellido}"></p>
 						</div>
 						<div class="col-sm-12">
 							<label class="col-form-label">DNI: </label> <input
 								class="form-control" type="text" th:field="*{dni}" />
+								<p th:if="${#fields.hasErrors('dni')}">Invalid Age</p>
 						</div>
 						<div class="col-sm-12">
 							<input class="form-control" type="hidden" th:field="*{puntaje}" />

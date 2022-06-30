@@ -109,22 +109,32 @@
 						<div class="col-sm-12">
 							<label class="form-label">Curso: </label> <input
 								class="form-control" type="text" th:field="*{nombre}" />
+								<p th:if="${#fields.hasErrors('nombre')}"th:errorclass="error"
+								 th:errors="*{nombre}"></p>
 						</div>
 						<div class="col-sm-12">
 							<label class="form-label">Inicio de Curso: </label> <input
 								class="form-control" type="date" th:field="*{inicio}" />
+								<p th:if="${#fields.hasErrors('inicio')}"th:errorclass="error"
+								 th:errors="*{inicio}"></p>
 						</div>
 						<div class="col-sm-12">
 							<label class="form-label">Culminación de Curso: </label> <input
 								class="form-control" type="date" th:field="*{culminacion}" />
+								<p th:if="${#fields.hasErrors('culminacion')}"th:errorclass="error"
+								 th:errors="*{culminacion}"></p>
 						</div>
 						<div class="col-sm-12">
 							<label class="form-label">Precio: </label> <input
 								class="form-control" type="text" th:field="*{precio}" />
+								<p th:if="${#fields.hasErrors('precio')}"th:errorclass="error"
+								 th:errors="*{precio}"></p>
 						</div>
 						<div class="col-sm-12">
 							<label class="form-label">Vacantes: </label> <input
 								class="form-control" type="text" th:field="*{vacantes}" />
+								<p th:if="${#fields.hasErrors('vacantes')}"th:errorclass="error"
+								 th:errors="*{vacantes}"></p>
 						</div>
 						<div class="col-sm-12">
 							<label class="form-label">Modalidad: </label> <select

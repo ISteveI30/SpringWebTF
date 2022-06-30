@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Pagos</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container mx-auto mt-4">
+		<h3>Historial de cursos comprados por el estudiante</h3>
+
+		<div class="table-responsive">
+			<table class="table table-success table-striped">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Nombre</th>
+						<th>Fecha</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="p:${list}">
+						<td th:text="${p[0]}"></td>
+						<td th:text="${p[1]}"></td>
+						<td th:text="${p[2]}"></td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+
+	</div>
+	<footer th:replace="master/master :: resource"></footer>
+</body>
+</html>

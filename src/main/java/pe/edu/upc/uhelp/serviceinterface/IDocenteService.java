@@ -17,4 +17,6 @@ public interface IDocenteService {
 
 	public void update(Docente docente);
 	
+	public List<String[]>QueryLuis();
+	
 }

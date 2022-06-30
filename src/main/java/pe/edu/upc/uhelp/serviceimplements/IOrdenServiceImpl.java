@@ -41,4 +41,14 @@ public class IOrdenServiceImpl implements IOrdenService {
 		ordenRepository.save(orden);
 	}
 
+	@Override
+	public List<String[]> QueryJhon() {
+		return ordenRepository.QueryJhon();
+	}
+
+	@Override
+	public List<String[]> QueryMontototal() {
+		return ordenRepository.QueryMontototal();
+	}
+
 }

@@ -14,6 +14,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -25,16 +27,19 @@ public class Curso {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idCurso;
 	
+	@NotEmpty(message = "Ingrese el nombre del curso")
 	@Column(name = "nombre", nullable = false, length = 45)
 	private String nombre;
 	
+	@Future  
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern ="yyyy-MM-dd")
 	@Column(name = "inicio", nullable = false)
 	private Date inicio;
 	
+	@Future  
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern ="yyyy-MM-dd")
+	@DateTimeFormat(pattern ="yyyy-MM-dd") 
 	@Column(name = "culminacion", nullable = false)
 	private Date culminacion;
 	
@@ -43,6 +48,7 @@ public class Curso {
 	@Column(name = "precio", columnDefinition = "Decimal(8,2)", nullable = false)
 	private double precio;
 	
+	@NotEmpty(message = "Ingrese el número de vacantes")
 	@Column(name = "vacantes", nullable = false, length = 3)
 	private String vacantes;
 

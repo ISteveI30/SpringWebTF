@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "academias")
@@ -18,13 +19,16 @@ public class Academia {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idAcademia;
-	
+
+	@NotEmpty(message = "Ingrese el nombre de la academia")
 	@Column(name = "nombre", nullable = false, length = 50)
 	private String nombre;
-	
+
+	@NotEmpty(message = "Ingrese un correo")
 	@Column(name = "correo", nullable = false, length = 50)
 	private String correo;
-	
+
+	@NotEmpty(message = "Ingrese un telefono")
 	@Column(name = "telefono", nullable = false, length = 50)
 	private String telefono;
 	

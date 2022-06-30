@@ -16,4 +16,8 @@ public interface IOrdenService {
 	Optional<Orden> findOrden(int idorden);
 
 	public void update(Orden orden);
+	
+	public List<String[]>QueryJhon();
+	
+	public List<String[]>QueryMontototal();
 }

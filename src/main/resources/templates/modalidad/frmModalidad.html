@@ -56,10 +56,14 @@
 					<div class="col-sm-12">
 						<label class="form-label">Tipo: </label> <input
 							class="form-control" type="text" th:field="*{tipo}" />
+							<p th:if="${#fields.hasErrors('tipo')}"th:errorclass="error"
+								 th:errors="*{tipo}"></p>
 					</div>
 					<div class="col-sm-12">
 						<label class="form-label">Duracion: </label> <input
 							class="form-control" type="text" th:field="*{duracion}" />
+							<p th:if="${#fields.hasErrors('duracion')}"th:errorclass="error"
+								 th:errors="*{duracion}"></p>
 					</div>
 					<div class="col-3 mt-5 border mx-auto">
 						<input class="btn btn-primary" type="submit" value="Registrar" />

@@ -41,4 +41,9 @@ public class DocenteServiceImpl implements IDocenteService{
 		docenteRepository.save(docente);
 	}
 
+	@Override
+	public List<String[]> QueryLuis() {
+		return docenteRepository.QueryLuis();
+	}
+
 }

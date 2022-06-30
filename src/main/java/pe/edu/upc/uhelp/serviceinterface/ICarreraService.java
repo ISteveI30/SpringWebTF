@@ -16,4 +16,6 @@ public interface ICarreraService {
 	public void update(Carrera person);
 	
 	Optional<Carrera> findCarrera(int idcarrera);
+	
+	public List<String[]>QueryAlex();
 }

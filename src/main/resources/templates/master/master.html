@@ -10,6 +10,13 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 <link rel="stylesheet" th:href="@{/css/fuente.css}" />
+
+
+<style>
+    .error {
+        color: red;
+    }
+</style>
 </head>
 <body>
 	<header th:fragment="header">
@@ -99,8 +106,23 @@
 						<ul class="dropdown-menu">
 							<li sec:authorize="hasRole('ROLE_STUDENT')"><a
 								class="dropdown-item" th:href="@{/perfil}">Perfil</a></li>
+								<li sec:authorize="hasRole('ROLE_STUDENT')"><a
+								class="dropdown-item" th:href="@{/reportes/reporte2}">Reporte Historial de Compra</a></li>
+								<li sec:authorize="hasRole('ROLE_STUDENT')"><a
+								class="dropdown-item" th:href="@{/reportes/reporte4}">Reporte Monto total</a></li>
+								
 							<li sec:authorize="hasRole('ROLE_ACADEMY')"><a
 								class="dropdown-item" th:href="@{/perfilAcademy}">Perfil</a></li>
+								
+								<li sec:authorize="hasRole('ROLE_ACADEMY')"><a
+								class="dropdown-item" th:href="@{/reportes/reporte1}">Reporte Cursos por carrera</a></li>
+							
+							
+							<li sec:authorize="hasRole('ROLE_ACADEMY')"><a
+								class="dropdown-item" th:href="@{/reportes/reporte3}">Reporte Cursos por Docente</a></li>
+						
+								
+								
 							<li><hr class="dropdown-divider"></li>
 							<li>
 								<form th:action="@{/logout}" method="post">

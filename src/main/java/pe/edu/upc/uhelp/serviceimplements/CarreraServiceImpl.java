@@ -42,4 +42,9 @@ public class CarreraServiceImpl implements ICarreraService {
 		return carreraRepository.findById(idcarrera);
 	}
 
+	@Override
+	public List<String[]> QueryAlex() {
+		return carreraRepository.QueryAlex();
+	}
+
 }

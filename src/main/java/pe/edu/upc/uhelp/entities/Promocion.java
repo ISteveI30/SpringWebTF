@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="Promociones")
@@ -17,11 +18,11 @@ public class Promocion{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idPromocion;
 	
-	//@NotEmpty(message = "Ingrese el titulo de la Promocion*")
+	@NotEmpty(message = "Ingrese el titulo de la Promocion*")
 	@Column(name = "titulo", nullable = false, length = 30)
 	private String titulo;
 	
-	//@NotEmpty(message = "Ingrese la descripción de la Promocion*")
+	@NotEmpty(message = "Ingrese la descripción de la Promocion*")
 	@Column(name = "descripcion", nullable = false, length = 200)
 	private String descripcion;
 	
