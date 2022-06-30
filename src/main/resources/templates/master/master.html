@@ -30,7 +30,7 @@
 						<li><a class="nav-link active" aria-current="page"
 							th:href="@{/inicio}">Inicio</a></li>
 
-						<li sec:authorize="hasRole('ROLE_STUDENT')"
+						<!-- <li sec:authorize="hasRole('ROLE_STUDENT')"
 							class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#"
 							id="navbarDropdownMenuLink" role="button"
@@ -41,7 +41,8 @@
 								<li><a class="dropdown-item" th:href="@{/pagos/select}">Registrar</a></li>
 								<li><a class="dropdown-item" th:href="@{/pagos/listar}">Listar</a></li>
 
-							</ul></li>
+							</ul></li> 
+						-->
 
 						<li sec:authorize="hasRole('ROLE_ACADEMY')"><a
 							class="nav-link active" aria-current="page"

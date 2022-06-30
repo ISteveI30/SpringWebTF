@@ -26,15 +26,6 @@
 						class="form-control" type="text" th:field="*{descripcion}" />
 				</div>
 				<div class="col-sm-12">
-					<label class="form-label">Docente: </label> <select
-						class="form-control" name="selectPerson"
-						th:field="*{docente.idDocente}">
-						<option th:each="d:${lstDocente}" th:value="${d.idDocente}"
-							th:text="${d.nombre}+' '+${d.apellido}"
-							th:selected="(${d.idDocente}==*{docente.idDocente})"></option>
-					</select>
-				</div>
-				<div class="col-sm-12">
 					<label class="form-label">Curso: </label> <select
 						class="form-control" name="selectCurso"
 						th:field="*{curso.idCurso}">

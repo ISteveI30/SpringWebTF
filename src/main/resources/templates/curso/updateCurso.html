@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <title>Update Curso</title>
@@ -15,8 +15,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	<div class="container mt-3 row mx-auto">
 		<h2 class="text-center">Actualizar docente</h2>
 		<div class="container text-white col-5 rounded p-5 fondo">
-			<form th:action="@{/cursos/modificar}" th:object="${c}"
-				method="post">
+			<form th:action="@{/cursos/modificar}" th:object="${c}" method="post">
 				<div class="col-sm-12">
 					<input class="form-control" type="hidden" th:field="*{idCurso}" />
 				</div>
@@ -42,20 +41,26 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 				</div>
 				<div class="col-sm-12">
 					<label class="form-label">Modalidad: </label> <select
-						name="selectModalidad" class="form-control" 
+						name="selectModalidad" class="form-control"
 						th:field="*{modalidad.idModalidad}">
-						<option th:each="m:${lstmodalidades}" 
-							th:value="${m.idModalidad}"
+						<option th:each="m:${lstmodalidades}" th:value="${m.idModalidad}"
 							th:text="${m.tipo}+' - '+${m.formato}"
 							th:selected="(${m.idModalidad}==*{modalidad.idModalidad})"></option>
+					</select>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Docente: </label> <select
+						name="selectPerson" class="form-control"
+						th:field="*{docente.idDocente}">
+						<option th:each="c:${lstdocentes}" th:value="${c.idDocente}"
+							th:text="${c.nombre}+' - '+${c.apellido}"></option>
 					</select>
 				</div>
 				<div class="col-sm-12">
 					<label class="form-label">Carrera: </label> <select
 						name="selectPerson" class="form-control"
 						th:field="*{carrera.idCarrera}">
-						<option th:each="c:${lstcarreras}"
-							th:value="${c.idCarrera}"
+						<option th:each="c:${lstcarreras}" th:value="${c.idCarrera}"
 							th:text="${c.modalidad}+' - '+${c.nombre}"
 							th:selected="(${c.idCarrera}==*{carrera.idCarrera})"></option>
 					</select>

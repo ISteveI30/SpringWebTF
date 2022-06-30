@@ -37,6 +37,7 @@
 									<h6 class="card-text" th:text="'Culminación: '+${#dates.format(c.culminacion,'dd/MM/yyyy')}"></h6>
 									<h6 class="card-text" th:text="'Modalidad: '+${c.modalidad.tipo}+' - '+${c.modalidad.formato}"></h6>
 									<h6 class="card-text" th:text="'Vacantes: '+${c.vacantes}"></h6>
+									 <h6 class="card-text" th:text="'Docente: '+${c.docente.nombre}+' '+${c.docente.apellido}"></h6>
 									 
 									<div class="d-flex justify-content-end">
 										<small class="text-muted" th:text="'S/.'+*{c.precio}+'0'"></small>
@@ -133,6 +134,14 @@
 									th:value="${m.idModalidad}"
 									th:text="${m.tipo}+' - '+${m.formato}"
 									th:selected="(${m.idModalidad}==*{modalidad.idModalidad})"></option>
+							</select>
+						</div>
+						<div class="col-sm-12">
+							<label class="form-label">Docente: </label> <select
+								name="selectPerson" class="form-control"
+								th:field="*{docente.idDocente}">
+								<option th:each="c:${lstdocentes}" th:value="${c.idDocente}"
+									th:text="${c.nombre}+' - '+${c.apellido}"></option>
 							</select>
 						</div>
 						<div class="col-sm-12">

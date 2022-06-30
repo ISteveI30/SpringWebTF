@@ -17,33 +17,16 @@ public class Pago {
 	
 	@Column(name = "nombre", nullable = false, length = 45)
 	private String nombre;
-	
-	@Column(name = "numeroTarjeta", nullable = false, length = 16)
-	private String numeroTarjeta;
-	
-	@Column(name = "codigoTarjeta", nullable = false, length = 3)
-	private String codigoTarjeta;
-	
-	@Column(name = "codigoPresencial", nullable = false, length = 8)
-	private String codigoPresencial;
 		
 	public Pago() {
 		super();
 	}
-		
+	/*	
 	public Pago(String aux) {
 		super();
 		this.nombre = aux;
-	}
+	}*/
 
-	public Pago(int idPago, String nombre, String numeroTarjeta, String codigoTarjeta, String codigoPresencial) {
-		super();
-		this.idPago = idPago;
-		this.nombre = nombre;
-		this.numeroTarjeta = numeroTarjeta;
-		this.codigoTarjeta = codigoTarjeta;
-		this.codigoPresencial = codigoPresencial;
-	}
 
 	public int getIdPago() {
 		return idPago;
@@ -60,7 +43,7 @@ public class Pago {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
+/*
 	public String getNumeroTarjeta() {
 		return numeroTarjeta;
 	}
@@ -84,5 +67,5 @@ public class Pago {
 	public void setCodigoPresencial(String codigoPresencial) {
 		this.codigoPresencial = codigoPresencial;
 	}
-			
+			*/
 }

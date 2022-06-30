@@ -45,6 +45,7 @@
 			<div class="container border border-primary">
 				<h2 class="form-label text-center">Sub Total</h2>
 				<h5 class="form-label text-center" th:text="${orden.total}"></h5>
+		
 				<div class="col-3 mt-5 border mx-auto">
 					
 					<a type="button" th:href="@{/compras/ordenes}" class="btn btn-danger"
@@ -55,6 +56,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<footer th:replace="master/master :: resource"></footer>
 </body>
 </html>

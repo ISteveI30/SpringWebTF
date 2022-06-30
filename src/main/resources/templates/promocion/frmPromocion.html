@@ -35,7 +35,6 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 										th:text="'Curso: '+${pr.titulo}"></h4>
 									<p class="card-text" th:text="${pr.descripcion}"></p>
 									<h6 class="card-text" th:text="'Curso: '+${pr.curso.nombre}"></h6>
-									<h6 class="card-text" th:text="'Docente: '+${pr.docente.nombre}+' '+${pr.docente.apellido}"></h6>
 								
 								</div>
 							</div>
@@ -105,17 +104,6 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 						<div class="col-sm-12">
 							<label class="form-label">Descripción: </label> <input
 								class="form-control" type="text" th:field="*{descripcion}" />
-						</div>
-						<div class="col-sm-12">
-							<label class="form-label">Docente: </label> <select
-								class="form-control" 
-								th:field="*{docente.idDocente}">
-								<option th:each="d : ${lstdocentes}"
-									th:value="${d.idDocente}"
-									th:text="${d.nombre}+' '+${d.apellido}"
-									th:selected="(${d.idDocente}==*{docente.idDocente})">
-								</option>
-							</select>
 						</div>
 						<div class="col-sm-12">
 							<label class="form-label">Curso: </label> <select

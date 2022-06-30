@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pe.edu.upc.uhelp.entities.Curso;
 import pe.edu.upc.uhelp.serviceinterface.ICarreraService;
 import pe.edu.upc.uhelp.serviceinterface.ICursoService;
+import pe.edu.upc.uhelp.serviceinterface.IDocenteService;
 import pe.edu.upc.uhelp.serviceinterface.IModalidadService;
 
 @Controller
@@ -28,6 +29,8 @@ public class CursoController {
 	private ICarreraService carreraService;
 	@Autowired
 	private IModalidadService modalidadService;
+	@Autowired
+	private IDocenteService docService;
 	/*
 	@GetMapping("/registro")
 	public String newCurso(Model model) {
@@ -53,6 +56,7 @@ public class CursoController {
 			model.addAttribute("curso",new Curso());
 			model.addAttribute("lstcursos",cursoService.list());
 			model.addAttribute("lstcarreras",carreraService.list());
+			model.addAttribute("lstdocentes",docService.list());
 			model.addAttribute("lstmodalidades",modalidadService.list());
 		} catch (Exception e) {
 			model.addAttribute("error",e.getMessage());
@@ -66,6 +70,7 @@ public class CursoController {
 		model.addAttribute("c", curso.get());
 		model.addAttribute("lstcarreras",carreraService.list());
 		model.addAttribute("lstmodalidades",modalidadService.list());
+		model.addAttribute("lstdocentes",docService.list());
 		} catch (Exception e) {
 		model.addAttribute("error", e.getMessage());
 		}
@@ -89,6 +94,7 @@ public class CursoController {
 		model.addAttribute("lstcursos",cursoService.list());
 		model.addAttribute("lstcarreras",carreraService.list());
 		model.addAttribute("lstmodalidades",modalidadService.list());
+		model.addAttribute("lstdocentes",docService.list());
 			return "redirect:/cursos/listar";
 	}
 	

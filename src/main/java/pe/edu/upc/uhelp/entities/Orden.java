@@ -49,8 +49,10 @@ public class Orden {
 
 	public Orden() {
 		super();
+		//this.pago = new Pago() ;
 		//this.ordenDetalle = new ArrayList<>();
 	}
+	
 	/*@PrePersist
 	public void prePersist() {
 		fechaCompra=new Date();

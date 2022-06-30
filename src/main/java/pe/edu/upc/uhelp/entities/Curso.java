@@ -54,6 +54,9 @@ public class Curso {
 	@JoinColumn(name="idCarrera")
 	private Carrera carrera;
 	
+	@ManyToOne
+    @JoinColumn(name="idDocente")
+    private Docente docente;
 	/*@ManyToOne
 	@JoinColumn(name="idAcademia")
 	private Academia academia;*/
@@ -126,6 +129,14 @@ public class Curso {
 		this.carrera = carrera;
 	}
 
+	public Docente getDocente() {
+		return docente;
+	}
+
+	public void setDocente(Docente docente) {
+		this.docente = docente;
+	}
+
 	/*public Academia getAcademia() {
 		return academia;
 	}
@@ -133,4 +144,6 @@ public class Curso {
 	public void setAcademia(Academia academia) {
 		this.academia = academia;
 	}*/	
+	
+	
 }

@@ -24,6 +24,7 @@ import pe.edu.upc.uhelp.serviceinterface.EstudianteService;
 import pe.edu.upc.uhelp.serviceinterface.ICursoService;
 import pe.edu.upc.uhelp.serviceinterface.IDetalleOrdenService;
 import pe.edu.upc.uhelp.serviceinterface.IOrdenService;
+import pe.edu.upc.uhelp.serviceinterface.IPagoService;
 
 @Controller
 @RequestMapping("/compras")
@@ -41,6 +42,9 @@ public class CompraController {
 	
 	@Autowired
 	private IDetalleOrdenService detalleService;
+	
+	@Autowired
+	private IPagoService pagoService;
 	
 	List<DetalleOrden> listOrden = new ArrayList<DetalleOrden>();
 	Orden orden = new Orden();
@@ -121,8 +125,10 @@ public class CompraController {
 	public String comprarCurso( Model model,HttpSession session) {
 		Date fechaCompra = new Date();
 		var cliente= estudianteService.findEstudiante(Integer.parseInt(session.getAttribute("idStudent").toString())).get();
+		var pago = pagoService.findPago(1);
 		orden.setFechaCompra(fechaCompra);
 		orden.setEstudiante(cliente);
+		orden.setPago(pago.get());
 		ordenService.insert(orden);
 		for (DetalleOrden detalleOrden : listOrden) {
 			detalleOrden.setOrden(orden);

@@ -23,7 +23,6 @@
 							<p class="card-text"
 								th:text="${p.descripcion}"></p>
 
-							<p class="text-muted text-end" th:text="${p.docente.nombre}+' '+${p.docente.apellido}"></p>
 							<p class="text-muted text-end" th:text="*{p.curso.nombre}"></p>
 							<a type="button" class="btn btn-primary" th:href="@{'/estudiantes/view/'+${p.idPromocion}}">Añadir</a>
 						</div>

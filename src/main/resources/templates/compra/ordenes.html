@@ -44,11 +44,61 @@
 				<h5 class="form-label text-center" th:text="${orden.total}"></h5>
 				<div class="col-3 mt-5 border mx-auto">
 
-					<a th:href="@{/compras/comprar}" type="button" class="btn btn-danger">Confirmar Compra</a>
+					<a th:href="@{/compras/comprar}" type="button"
+						class="btn btn-danger">Confirmar Compra</a>
 				</div>
 			</div>
 		</div>
 	</div>
+
+
+
+
+
+	<!-- 
+	<div class="container">
+		<div th:switch="${tipoPago.tipo}">
+			<div th:case="'YAPE'">
+				<div class="col-4 mx-auto mt-5 p-4 border">
+					<form th:action="@{/pagos/guardar}" th:object="${pago}"
+						method="post">
+						<h2 class="form-label text-center">Pago: YAPE</h2>
+							<input class="form-control" type="hidden" th:field="*{idPago}" />
+							<input class="form-control" type="hidden" th:field="*{nombre}" />
+						<div class="ms-4">
+							<img class="ms-5" alt="imagen de QR" th:src="@{/img/dinoQR.jpg}"
+								width="200" height="200">
+						</div>
+						<div class="col-2 mt-5 border mx-auto">
+							<input class="btn btn-primary" type="submit" value="Registrar" />
+						</div>
+					</form>
+				</div>
+			</div>
+			<div th:case="'Tarjeta'">
+				<div class="col-4 mx-auto mt-5 p-4 border">
+					<form th:action="@{/pagos/guardar}" th:object="${pago}"
+						method="post">
+						<h2 class="form-label text-center">Pago: Tarjeta</h2>
+							<input type="hidden" th:field="*{idPago}" />
+							<input type="hidden" th:field="*{nombre}" />
+						<div >
+							<label class="form-label">Número de tarjeta: </label> <input
+								class="form-control" type="text" th:field="*{numeroTarjeta}" />
+						</div>
+						<div>
+							<label class="form-label">Código de 3 dígitos </label> <input
+								class="form-control" type="text" th:field="*{codigoTarjeta}" />
+						</div>
+						<div class="col-2 mt-5 mx-auto">
+							<input class="btn btn-primary" type="submit" value="Registrar" />
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div> -->
+
 	<footer th:replace="master/master :: resource"></footer>
 </body>
 </html>

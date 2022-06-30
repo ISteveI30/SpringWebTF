@@ -25,9 +25,7 @@ public class Promocion{
 	@Column(name = "descripcion", nullable = false, length = 200)
 	private String descripcion;
 	
-	@ManyToOne
-    @JoinColumn(name="idDocente")
-    private Docente docente;
+	
 	
 	/*@ManyToOne
     @JoinColumn(name="idAcademia")
@@ -63,14 +61,6 @@ public class Promocion{
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-
-	public Docente getDocente() {
-		return docente;
-	}
-
-	public void setDocente(Docente docente) {
-		this.docente = docente;
 	}
 
 	public Curso getCurso() {

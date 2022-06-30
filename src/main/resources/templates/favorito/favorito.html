@@ -22,7 +22,8 @@
 							<h5 class="card-text" th:text="*{c.curso.nombre}"></h5>
 							<p class="card-text"
 								th:text="'Modalidad: '+${c.curso.modalidad.tipo}+' - '+${c.curso.modalidad.formato}"></p>
-
+							<p
+								th:text="'Docente: '+${c.curso.docente.nombre}+' '+${c.curso.docente.apellido}"></p>
 							<p class="text-muted text-end"
 								th:text="'S/.'+*{c.curso.precio}+'0'"></p>
 							<p class="text-muted text-end"
