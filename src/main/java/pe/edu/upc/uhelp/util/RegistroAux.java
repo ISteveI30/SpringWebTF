@@ -15,6 +15,8 @@ public class RegistroAux {
 	private String correo;
 
 	private int sede;
+	
+	private String sedes;
 
 	private String telefono;
 
@@ -103,6 +105,14 @@ public class RegistroAux {
 
 	public void setStudent(Estudiante student) {
 		this.student = student;
+	}
+
+	public String getSedes() {
+		return sedes;
+	}
+
+	public void setSedes(String sedes) {
+		this.sedes = sedes;
 	}
 
 	/*public String getNickname() {
